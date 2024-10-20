@@ -1,7 +1,7 @@
 public class Faculty extends Personnel {
     //Attributes
-    private String status;
-    private String sabbatical;
-    private String coursesTeaching;
+    private boolean status;
+    private boolean sabbatical;
+    private int courses_teaching;
 
 }
