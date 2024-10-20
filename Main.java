@@ -51,5 +51,22 @@ public class Main
 
 
     }
+
+
+    // ***Brainstorm***
+    /*  
+        Thinking we should use hashmaps with the employee_id as a key,
+        and the Personnel/Faculty class as the object
+
+        Example:
+            HashMap<employee_id, Personnel>();
+
+        Then, we can just write the whole set of information in Personnel
+        to the appropriate .txt files
+
+        Only problem I see with this is it will become redundant to put
+        the same Object in multiple .txt files(The Personnel class contains
+        the information for both basic_info.txt and additional_info.txt).
+     */
 }
     

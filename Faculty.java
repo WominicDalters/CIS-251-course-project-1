@@ -6,7 +6,7 @@ public class Faculty extends Personnel {
     private boolean sabbatical;
     private int courses_teaching;
 
-    //methods
+    //constructor
     public Faculty(String id, String f_name, String l_name, String s, 
                    String email, String dep, String r, int join_y,
                    String biography, String s_w_link, String v_activities,
@@ -20,4 +20,6 @@ public class Faculty extends Personnel {
         this.courses_teaching = courses;
 
     }
+    
+    //Need methods to access/edit attributes individually
 }

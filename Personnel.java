@@ -33,4 +33,6 @@ public class Personnel
         this.volunteer_activities = v_activities;
         this.on_leave = leave;
     }
+
+    //Need methods to access/edit attributes individually
 }
