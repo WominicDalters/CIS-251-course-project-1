@@ -25,8 +25,35 @@ public class Personnel_Manager
 
     }
 
-        //method for updating personnel
+        //methods for updating personnel
+    public void change_first_name(String id, String new_first_name)
+    {
+        //changing the first name
+        Personnel Person = personnel_hash.get(id);
+        Person.change_first_name(new_first_name);
+        personnel_hash.put(id, Person);
+
+        //update hashmap by name
+
+
+        //update hashmap by department
+
+
+        //update hashmap by join year
+    }
 
 
         //method for removing personnel
+    public void remove_first_name(String id)
+    {
+        //remove by id
+        Personnel Person = personnel_hash.get(id);
+        Person.remove_first_name();
+        personnel_hash.put(id, Person);
+
+        //update name hashmap
+
+
+        //update 
+    }
 }

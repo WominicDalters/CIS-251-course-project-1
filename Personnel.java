@@ -38,26 +38,141 @@ public class Personnel
     }
 
     //Methods
-        //Method to get employee id
+
+
+
+        //Methods to remove individual attributes
+    public void remove_first_name()
+    {
+        this.first_name = "";
+    }
+
+    public void remove_last_name()
+    {
+        this.last_name = "";
+    }
+
+    public void remove_sex()
+    {
+        this.sex = "";
+    }
+
+    public void remove_email_address()
+    {
+        this.email_address = "";
+    }
+
+    public void remove_department()
+    {
+        this.department = "";
+    }
+
+    public void remove_role()
+    {
+        this.role = "";
+    }
+
+    public void remove_join_year()
+    {
+        this.join_year = 0;
+    }
+
+    public void remove_bio()
+    {
+        this.bio = "";
+    }
+
+    public void remove_school_web_link()
+    {
+        this.school_web_link = "";
+    }
+
+    public void remove_volunteer_activities()
+    {
+        this.volunteer_activities = "";
+    }
+
+    public void remove_on_leave()
+    {
+        this.on_leave = false;
+    }
+
+
+
+        //Methods to change individual attributes
+    public String change_first_name(String new_first_name)
+    {
+        return this.first_name = new_first_name;
+    }
+
+    public String change_last_name(String new_last_name)
+    {
+        return this.last_name = new_last_name;
+    }
+
+    public String change_sex(String new_sex)
+    {
+        return this.sex = new_sex;
+    }
+
+    public String change_email_address(String new_email_address)
+    {
+        return this.email_address = new_email_address;
+    }
+
+    public String change_department(String new_department)
+    {
+        return this.department = new_department;
+    }
+
+    public String change_role(String new_role)
+    {
+        return this.role = new_role;
+    }
+
+    public int change_join_year(int new_join_year)
+    {
+        return this.join_year = new_join_year;
+    }
+
+    public String change_bio(String new_bio)
+    {
+        return this.bio = new_bio;
+    }
+
+    public String change_school_web_link(String new_school_web_link)
+    {
+        return this.school_web_link = new_school_web_link;
+    }
+
+    public String change_volunteer_activities(String new_volunteer_activities)
+    {
+        return this.volunteer_activities = new_volunteer_activities;
+    }
+
+    public boolean change_on_leave(boolean new_leave_status)
+    {
+        return this.on_leave = new_leave_status;
+    }
+
+
+
+        //Methods to get individual attributes
     public String get_employee_id()
     {
         return employee_id;
     }
 
-        //Method to get first name
     public String get_first_name()
     {
         return first_name;
     }
         
-        //Method to get last name
     public String get_last_name()
     {
         return last_name;
     }
 
-
-        //so on, so forth...
     public String get_sex()
     {
         return sex;
