@@ -1,4 +1,5 @@
-
+//Dominic Walters
+//
 
 public class Faculty extends Personnel {
     //Attributes
@@ -21,5 +22,22 @@ public class Faculty extends Personnel {
 
     }
     
-    //Need methods to access/edit attributes individually
+    //Method to get status
+    public boolean get_status()
+    {
+        return status;
+    }
+
+    //mMethod to get sabbatical
+    public boolean get_sabbatical()
+    {
+        return sabbatical;
+    }
+
+    //Method to get courses
+    public int get_courses_teaching()
+    {
+        return courses_teaching;
+    }
+
 }

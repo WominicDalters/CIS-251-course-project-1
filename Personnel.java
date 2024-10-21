@@ -1,3 +1,6 @@
+//Dominic Walters
+//
+
 public class Personnel 
 {
     //Attributes
@@ -34,5 +37,71 @@ public class Personnel
         this.on_leave = leave;
     }
 
-    //Need methods to access/edit attributes individually
+    //Methods
+        //Method to get employee id
+    public String get_employee_id()
+    {
+        return employee_id;
+    }
+
+        //Method to get first name
+    public String get_first_name()
+    {
+        return first_name;
+    }
+        
+        //Method to get last name
+    public String get_last_name()
+    {
+        return last_name;
+    }
+
+
+        //so on, so forth...
+    public String get_sex()
+    {
+        return sex;
+    }
+
+    public String get_email_address()
+    {
+        return email_address;
+    }
+
+    public String get_department()
+    {
+        return department;
+    }
+
+    public String get_role()
+    {
+        return role;
+    }
+
+    public int get_join_year()
+    {
+        return join_year;
+    }
+
+    public String get_bio()
+    {
+        return bio;
+    }
+
+    public String get_school_web_link()
+    {
+        return school_web_link;
+    }
+
+    public String get_volunteer_activities()
+    {
+        return volunteer_activities;
+    }
+
+    public boolean get_on_leave()
+    {
+        return on_leave;
+    }
+
+
 }
