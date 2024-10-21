@@ -4,7 +4,7 @@ public class Personnel_Manager
 {
     //attributes
         //Hashmap by id
-    private HashMap<String, Personnel> personnel_hash = new HashMap<>();
+    private HashMap<String /*employee_id*/, Personnel> personnel_hash = new HashMap<>();
 
         //Hashmap by name
 
