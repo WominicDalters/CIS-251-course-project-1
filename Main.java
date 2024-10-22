@@ -63,18 +63,18 @@ public class Main
                     String data = reader.nextLine();
                     String[] attributes = data.split("\\|", -1);
                     Personnel newPersonnel = new Personnel(
-                        attributes[0], 
-                        attributes[1], 
-                        attributes[2], 
-                        attributes[3], 
-                        attributes[4], 
-                        attributes[5], 
-                        attributes[6], 
-                        Integer.parseInt(attributes[7]),
-                        attributes[8],
-                        attributes[9],
-                        "",
-                        ""
+                        attributes[0], //id
+                        attributes[1], //first
+                        attributes[2], //last
+                        attributes[3], //sex
+                        attributes[4], //email
+                        attributes[5], //department
+                        attributes[6], //role
+                        Integer.parseInt(attributes[7]), //joinyear
+                        attributes[8], //bio
+                        attributes[9], //schoolweblink
+                        "", //volunteer activities
+                        "" // leave
                         );
                     UFV_manager.add_personnel(attributes[0], newPersonnel);
                 }
@@ -87,7 +87,7 @@ public class Main
         }
         else
         {
-            System.out.println("The file does not exist");
+            System.out.println("BASICINFO: The file does not exist");
         }
 
         if (additionalInfo.exists())
@@ -111,7 +111,7 @@ public class Main
         }
         else
         {
-            System.out.println("The file does not exist");
+            System.out.println("ADDITIONALINFO: The file does not exist");
         }
 
         if (faculty.exists())
@@ -132,10 +132,10 @@ public class Main
                         sabbatical = true;
                     }
                     Faculty newFaculty = new Faculty(
-                        attributes[0],
+                        attributes[0], // id
                         fullTime,
                         sabbatical,
-                        Integer.parseInt(attributes[3])
+                        Integer.parseInt(attributes[3]) // coures in semester
                     );
                     UFV_manager.change_faculty(attributes[0], newFaculty);
                 }
@@ -148,7 +148,7 @@ public class Main
         }
         else
         {
-            System.out.println("The file does not exist");
+            System.out.println("FACULTY: The file does not exist");
         }
 
         
