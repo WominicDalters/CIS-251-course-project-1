@@ -15,13 +15,14 @@ public class Personnel
     private String bio;
     private String school_web_link;
     private String volunteer_activities;
-    private boolean on_leave;
+    private String on_leave;
+    private Faculty faculty = null;
 
     //Contructor
     public Personnel(String id, String f_name, String l_name, String s, 
                      String email, String dep, String r, int join_y,
                      String biography, String s_w_link, String v_activities,
-                     boolean leave)
+                     String leave)
     {
         this.employee_id = id;
         this.first_name = f_name;
@@ -94,7 +95,12 @@ public class Personnel
 
     public void remove_on_leave()
     {
-        this.on_leave = false;
+        this.on_leave = "";
+    }
+
+    public void remove_faculty()
+    {
+        this.faculty = null;
     }
 
 
@@ -150,9 +156,14 @@ public class Personnel
         return this.volunteer_activities = new_volunteer_activities;
     }
 
-    public boolean change_on_leave(boolean new_leave_status)
+    public String change_on_leave(String new_leave_status)
     {
         return this.on_leave = new_leave_status;
+    }
+
+    public Faculty change_faculty(Faculty new_faculty)
+    {
+        return this.faculty = new_faculty;
     }
 
 
@@ -213,9 +224,13 @@ public class Personnel
         return volunteer_activities;
     }
 
-    public boolean get_on_leave()
+    public String get_on_leave()
     {
         return on_leave;
+    }
+
+    public Faculty get_faculty() {
+        return faculty;
     }
 
 

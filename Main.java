@@ -36,8 +36,8 @@
     */
 
 import java.io.File;
-//import java.io.FileNotFoundException;
-//import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Main 
 {
@@ -48,27 +48,40 @@ public class Main
         File basicInfo = new File("basic_info.txt");
         File additionalInfo = new File("additional_info.txt");
 
-
+        Personnel_Manager UFV_manager = new Personnel_Manager();
         
 
         //***Testing that the file exists***
 
-        /*
-        if (faculty.exists())
+        if (basicInfo.exists())
         {
-            System.out.println("it exists");
             try
             {
-                Scanner reader = new Scanner(faculty);
+                Scanner reader = new Scanner(basicInfo);
                 while (reader.hasNextLine())
                 {
                     String data = reader.nextLine();
-                    System.out.println(data);
+                    String[] attributes = data.split("\\|", -1);
+                    Personnel newPersonnel = new Personnel(
+                        attributes[0], 
+                        attributes[1], 
+                        attributes[2], 
+                        attributes[3], 
+                        attributes[4], 
+                        attributes[5], 
+                        attributes[6], 
+                        Integer.parseInt(attributes[7]),
+                        attributes[8],
+                        attributes[9],
+                        "",
+                        ""
+                        );
+                    UFV_manager.add_personnel(attributes[0], newPersonnel);
                 }
             }
             catch(FileNotFoundException exception)
             {
-                System.out.println("An error occured.");
+                System.out.println("An error occured: " + exception);
 
             }
         }
@@ -76,33 +89,70 @@ public class Main
         {
             System.out.println("The file does not exist");
         }
-        */
+
+        if (additionalInfo.exists())
+        {
+            try
+            {
+                Scanner reader = new Scanner(additionalInfo);
+                while (reader.hasNextLine())
+                {
+                    String data = reader.nextLine();
+                    String[] attributes = data.split("\\|", -1);
+                    UFV_manager.change_volunteer_activities(attributes[0], attributes[1]);
+                    UFV_manager.change_on_leave(attributes[0], attributes[2]);
+                }
+            }
+            catch(FileNotFoundException exception)
+            {
+                System.out.println("An error occured: " + exception);
+
+            }
+        }
+        else
+        {
+            System.out.println("The file does not exist");
+        }
+
+        if (faculty.exists())
+        {
+            try
+            {
+                Scanner reader = new Scanner(faculty);
+                while (reader.hasNextLine())
+                {
+                    String data = reader.nextLine();
+                    String[] attributes = data.split("\\|", -1);
+                    boolean fullTime = false;
+                    if (attributes[1].equals("full-time")) {
+                        fullTime = true;
+                    }
+                    boolean sabbatical = false;
+                    if (attributes[2].equals("y")) {
+                        sabbatical = true;
+                    }
+                    Faculty newFaculty = new Faculty(
+                        attributes[0],
+                        fullTime,
+                        sabbatical,
+                        Integer.parseInt(attributes[3])
+                    );
+                    UFV_manager.change_faculty(attributes[0], newFaculty);
+                }
+            }
+            catch(FileNotFoundException exception)
+            {
+                System.out.println("An error occured: " + exception);
+
+            }
+        }
+        else
+        {
+            System.out.println("The file does not exist");
+        }
+
         
-        //***********************************
-        
-        //creating an instance of Personnel Manager
-        Personnel_Manager UFV_manager = new Personnel_Manager();
 
-        //creating some mock data to work with while waiting for file data
-        Personnel Jim = new Personnel("0000", "Jim", "Halpert", "male", 
-                                      "jim@gmail.com", "default", "employee",
-                                      2004, "he is good", "none",
-                                      "none", false);
-
-        Personnel Chuck = new Personnel("1111", "Chuck", "Cheese", "male", 
-                                      "chuck@gmail.com", "default", "employee",
-                                      2015, "he likes ice cream", "none",
-                                      "none", false);
-
-        //Adding Jim and Chuck to the personnel hash map in UFV_manager
-        UFV_manager.add_personnel("0000", Jim);
-        UFV_manager.add_personnel("1111", Chuck);
-
-        
-
+        UFV_manager.viewMap();
     }
-
-
-    
 }
-    
