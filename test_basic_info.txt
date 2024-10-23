@@ -1,0 +1,5 @@
+6497|Hailey|Ace|f|hailey@email.com|English|volunteer|2019|They are good|ufv.ca/HaileyAce
+9576|Kate|Smith|m|kate@email.com|History|Department Head|2020|They are bad|ufv.ca/KateSmith
+8890|Hailey|Ace|f|hailey@email.com|English|President|2009|They are bad|ufv.ca/HaileyAce
+0708|Kate|Scott|f|kate@email.com|History|volunteer|2004|They are good|none
+4094|Naomi|Jones|f|naomi@email.com|Physics|Proffesor|2000|They are good|none

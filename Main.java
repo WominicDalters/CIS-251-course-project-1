@@ -44,11 +44,27 @@ public class Main
     public static void main(String[] args) 
     {
         //initiallizing the 3 text files to be written and read
+
         File faculty = new File("faculty.txt");
         File basicInfo = new File("basic_info.txt");
         File additionalInfo = new File("additional_info.txt");
+        
+        boolean TESTING = true;
+        if (TESTING) {
+            File_Generator fg = new File_Generator();
+            fg.generate_all(5);
+
+            faculty = new File("test_faculty_info.txt");
+            basicInfo = new File("test_basic_info.txt");
+            additionalInfo = new File("test_additional_info.txt");
+        }
+        
+
+
 
         Personnel_Manager UFV_manager = new Personnel_Manager();
+
+        
         
 
         //***Testing that the file exists***

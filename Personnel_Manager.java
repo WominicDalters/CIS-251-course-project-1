@@ -27,7 +27,7 @@ public class Personnel_Manager
 
     public void viewMap() {
         for(HashMap.Entry<String, Personnel> entry : personnel_hash.entrySet()) {
-            System.out.println("ID: " + entry.getKey() 
+            String info = "ID: " + entry.getKey() 
             + " -> First: " + entry.getValue().get_first_name() 
             + " Last: " + entry.getValue().get_last_name() 
             + " Sex: " + entry.getValue().get_sex() 
@@ -38,11 +38,16 @@ public class Personnel_Manager
             + " Bio: " + entry.getValue().get_bio() 
             + " WebLink: " + entry.getValue().get_school_web_link()
             + " Volunteer: " + entry.getValue().get_volunteer_activities() 
-            + " Leave: " + entry.getValue().get_on_leave() 
-            + " FullTime: " + entry.getValue().get_faculty().get_full_time()
-            + " Sabbatical: " + entry.getValue().get_faculty().get_sabbatical()
-            + " NumOfCourses: " + entry.getValue().get_faculty().get_courses_teaching()
-            );
+            + " Leave: " + entry.getValue().get_on_leave();
+
+
+            if (entry.getValue().get_faculty() != null) {
+                info = info + " FullTime: " + entry.getValue().get_faculty().get_full_time()
+                + " Sabbatical: " + entry.getValue().get_faculty().get_sabbatical()
+                + " NumOfCourses: " + entry.getValue().get_faculty().get_courses_teaching();
+            }
+
+            System.out.println(info + "\n");
         }
     }
 
