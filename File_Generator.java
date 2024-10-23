@@ -120,7 +120,7 @@ public class File_Generator {
                         "|full-time|n|0\n"
                         );
                     }
-                    else if (n == 4) {
+                    else if (i == 4) {
                         basicWrite.write(
                             rEmpId + 
                             "|Dan|Smith|m|dansmith@email.com|History|Department Head|2000|They are good|ufv.ca/dansmith\n"
@@ -150,7 +150,7 @@ public class File_Generator {
 
                 String rDepartment = departmentList[random.nextInt(departmentList.length)];
 
-                String rRole = "volunteer";
+                String rRole = "Volunteer";
                 if(isFaculty) {
                     rRole = roleList[random.nextInt(roleList.length)];
                 }

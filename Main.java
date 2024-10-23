@@ -52,7 +52,7 @@ public class Main
         boolean TESTING = true;
         if (TESTING) {
             File_Generator fg = new File_Generator();
-            fg.generate_all(20);
+            fg.generate_all(50);
 
             faculty = new File("test_faculty_info.txt");
             basicInfo = new File("test_basic_info.txt");
@@ -169,6 +169,7 @@ public class Main
 
         
 
-        UFV_manager.viewMap();
+        // UFV_manager.viewMap();
+        UFV_manager.aggregate();
     }
 }
