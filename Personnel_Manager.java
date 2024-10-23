@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Personnel_Manager 
@@ -26,7 +28,7 @@ public class Personnel_Manager
 
     }
 
-    public void printPersonnel(String empId) {
+    public String printPersonnel(String empId) {
             String info = "ID: " + empId 
             + " -> First: " + personnel_hash.get(empId).get_first_name()
             + " Last: " + personnel_hash.get(empId).get_last_name() 
@@ -46,7 +48,9 @@ public class Personnel_Manager
                 + " NumOfCourses: " + personnel_hash.get(empId).get_faculty().get_courses_teaching();
             }
 
-            System.out.println(info + "\n");
+            info += "\n";
+            System.out.println(info);
+            return info;
     }
 
     public void viewMap() {
@@ -77,46 +81,57 @@ public class Personnel_Manager
 
     public void aggregate() {
 
-        ArrayList<String> department_list = new ArrayList<>();
+        try {
+            FileWriter summaryWrite = new FileWriter("summary.txt");
+            ArrayList<String> department_list = new ArrayList<>();
 
-        System.out.println("---President---");
-        // Find President and deps
-        for(HashMap.Entry<String, Personnel> entry : personnel_hash.entrySet()) {
-            if(entry.getValue().get_role().equals("President")) {
-                printPersonnel(entry.getKey());
+            summaryWrite.write("---President---\n");
+            // Find President and deps
+            for(HashMap.Entry<String, Personnel> entry : personnel_hash.entrySet()) {
+                if(entry.getValue().get_role().equals("President")) {
+                    summaryWrite.write(printPersonnel(entry.getKey()));
+                }
+                if (!department_list.contains(entry.getValue().get_department()) && !entry.getValue().get_role().equals("President")) {
+                    department_list.add(entry.getValue().get_department());
+                }
             }
-            if (!department_list.contains(entry.getValue().get_department()) && !entry.getValue().get_role().equals("President")) {
-                department_list.add(entry.getValue().get_department());
+    
+            for (String department : department_list) {
+                // Dep head
+
+                summaryWrite.write("---Department Head of " + department + "---\n");
+                for(HashMap.Entry<String, Personnel> entry : personnel_hash.entrySet()) {
+                    if(entry.getValue().get_role().equals("Department Head") && entry.getValue().get_department().equals(department)) {
+                        summaryWrite.write(printPersonnel(entry.getKey()));
+    
+                        // break due to only one dep head
+                        break;
+                    }
+                }
+                // Profs
+                summaryWrite.write("---" + department + " Professors---\n");
+                for(HashMap.Entry<String, Personnel> entry : personnel_hash.entrySet()) {
+                    if(entry.getValue().get_role().equals("Professor") && entry.getValue().get_department().equals(department)) {
+                        summaryWrite.write(printPersonnel(entry.getKey()));
+                    }
+                }
+    
+                // Volunteers
+                summaryWrite.write("---" + department + " Volunteers---\n");
+                for(HashMap.Entry<String, Personnel> entry : personnel_hash.entrySet()) {
+                    if(entry.getValue().get_role().equals("Volunteer") && entry.getValue().get_department().equals(department)) {
+                        summaryWrite.write(printPersonnel(entry.getKey()));
+                    }
+                }   
             }
+            summaryWrite.close();
         }
-
-        for (String department : department_list) {
-            // Dep head
-            System.out.println("---Department Head of " + department + "---");
-            for(HashMap.Entry<String, Personnel> entry : personnel_hash.entrySet()) {
-                if(entry.getValue().get_role().equals("Department Head") && entry.getValue().get_department().equals(department)) {
-                    printPersonnel(entry.getKey());
-
-                    // break due to only one dep head
-                    break;
-                }
-            }
-            // Profs
-            System.out.println("---" + department + " Professors---");
-            for(HashMap.Entry<String, Personnel> entry : personnel_hash.entrySet()) {
-                if(entry.getValue().get_role().equals("Professor") && entry.getValue().get_department().equals(department)) {
-                    printPersonnel(entry.getKey());
-                }
-            }
-
-            // Volunteers
-            System.out.println("---" + department + " Volunteers---");
-            for(HashMap.Entry<String, Personnel> entry : personnel_hash.entrySet()) {
-                if(entry.getValue().get_role().equals("Volunteer") && entry.getValue().get_department().equals(department)) {
-                    printPersonnel(entry.getKey());
-                }
-            }   
+        catch (IOException e) 
+        {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
+        
         
     }
 
