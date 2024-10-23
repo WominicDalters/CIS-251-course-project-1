@@ -36,73 +36,140 @@
     */
 
 import java.io.File;
-//import java.io.FileNotFoundException;
-//import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Main 
 {
     public static void main(String[] args) 
     {
         //initiallizing the 3 text files to be written and read
+
         File faculty = new File("faculty.txt");
         File basicInfo = new File("basic_info.txt");
         File additionalInfo = new File("additional_info.txt");
+        
+        boolean TESTING = true;
+        if (TESTING) {
+            File_Generator fg = new File_Generator();
+            fg.generate_all(50);
+
+            faculty = new File("test_faculty_info.txt");
+            basicInfo = new File("test_basic_info.txt");
+            additionalInfo = new File("test_additional_info.txt");
+        }
+        
 
 
+
+        Personnel_Manager UFV_manager = new Personnel_Manager();
+
+        
         
 
         //***Testing that the file exists***
 
-        /*
+        if (basicInfo.exists())
+        {
+            try
+            {
+                Scanner reader = new Scanner(basicInfo);
+                while (reader.hasNextLine())
+                {
+                    String data = reader.nextLine();
+                    String[] attributes = data.split("\\|", -1);
+                    Personnel newPersonnel = new Personnel(
+                        attributes[0], //id
+                        attributes[1], //first
+                        attributes[2], //last
+                        attributes[3], //sex
+                        attributes[4], //email
+                        attributes[5], //department
+                        attributes[6], //role
+                        Integer.parseInt(attributes[7]), //joinyear
+                        attributes[8], //bio
+                        attributes[9], //schoolweblink
+                        "", //volunteer activities
+                        "" // leave
+                        );
+                    UFV_manager.add_personnel(attributes[0], newPersonnel);
+                }
+            }
+            catch(FileNotFoundException exception)
+            {
+                System.out.println("An error occured: " + exception);
+
+            }
+        }
+        else
+        {
+            System.out.println("BASICINFO: The file does not exist");
+        }
+
+        if (additionalInfo.exists())
+        {
+            try
+            {
+                Scanner reader = new Scanner(additionalInfo);
+                while (reader.hasNextLine())
+                {
+                    String data = reader.nextLine();
+                    String[] attributes = data.split("\\|", -1);
+                    UFV_manager.change_volunteer_activities(attributes[0], attributes[1]);
+                    UFV_manager.change_on_leave(attributes[0], attributes[2]);
+                }
+            }
+            catch(FileNotFoundException exception)
+            {
+                System.out.println("An error occured: " + exception);
+
+            }
+        }
+        else
+        {
+            System.out.println("ADDITIONALINFO: The file does not exist");
+        }
+
         if (faculty.exists())
         {
-            System.out.println("it exists");
             try
             {
                 Scanner reader = new Scanner(faculty);
                 while (reader.hasNextLine())
                 {
                     String data = reader.nextLine();
-                    System.out.println(data);
+                    String[] attributes = data.split("\\|", -1);
+                    boolean fullTime = false;
+                    if (attributes[1].equals("full-time")) {
+                        fullTime = true;
+                    }
+                    boolean sabbatical = false;
+                    if (attributes[2].equals("y")) {
+                        sabbatical = true;
+                    }
+                    Faculty newFaculty = new Faculty(
+                        attributes[0], // id
+                        fullTime,
+                        sabbatical,
+                        Integer.parseInt(attributes[3]) // coures in semester
+                    );
+                    UFV_manager.change_faculty(attributes[0], newFaculty);
                 }
             }
             catch(FileNotFoundException exception)
             {
-                System.out.println("An error occured.");
+                System.out.println("An error occured: " + exception);
 
             }
         }
         else
         {
-            System.out.println("The file does not exist");
+            System.out.println("FACULTY: The file does not exist");
         }
-        */
-        
-        //***********************************
-        
-        //creating an instance of Personnel Manager
-        Personnel_Manager UFV_manager = new Personnel_Manager();
-
-        //creating some mock data to work with while waiting for file data
-        Personnel Jim = new Personnel("0000", "Jim", "Halpert", "male", 
-                                      "jim@gmail.com", "default", "employee",
-                                      2004, "he is good", "none",
-                                      "none", false);
-
-        Personnel Chuck = new Personnel("1111", "Chuck", "Cheese", "male", 
-                                      "chuck@gmail.com", "default", "employee",
-                                      2015, "he likes ice cream", "none",
-                                      "none", false);
-
-        //Adding Jim and Chuck to the personnel hash map in UFV_manager
-        UFV_manager.add_personnel("0000", Jim);
-        UFV_manager.add_personnel("1111", Chuck);
 
         
 
+        // UFV_manager.viewMap();
+        UFV_manager.aggregate();
     }
-
-
-    
 }
-    
