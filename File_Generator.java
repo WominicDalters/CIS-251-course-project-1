@@ -43,9 +43,7 @@ public class File_Generator {
     };
 
     private String[] roleList = {
-        "President",
-        "Department Head",
-        "Proffesor"
+        "Professor"
     };
 
     public void generate_all(int n) {
@@ -57,7 +55,7 @@ public class File_Generator {
             FileWriter basicWrite = new FileWriter("test_basic_info.txt");
             FileWriter addWrite = new FileWriter("test_additional_info.txt");
             FileWriter facWrite = new FileWriter("test_faculty_info.txt");
-            // basicWrite.write("Files in Java might be tricky, but it is fun enough!\nqqq");
+
 
             ArrayList<String> usedIds = new ArrayList<>();
 
@@ -70,6 +68,73 @@ public class File_Generator {
                 }
 
                 usedIds.add(rEmpId);
+
+                // for president and department heads hard coded
+                if (i < departmentList.length + 1) {
+
+                    if (i == 0) {
+                        basicWrite.write(
+                            rEmpId + 
+                            "|John|Smith|m|johnsmith@email.com|admin|President|2000|They are good|ufv.ca/johnsmith\n"
+                        );
+                        addWrite.write(rEmpId +
+                        "|Volunteerd 60 days|no\n"
+                        );
+                        facWrite.write(rEmpId +
+                        "|full-time|n|0\n"
+                        );
+                    }
+                    else if (i == 1) {
+                        basicWrite.write(
+                            rEmpId + 
+                            "|Marie|Smith|f|mariesmith@email.com|English|Department Head|2000|They are good|ufv.ca/mariesmith\n"
+                        );
+                        addWrite.write(rEmpId +
+                        "|Volunteerd 60 days|no\n"
+                        );
+                        facWrite.write(rEmpId +
+                        "|full-time|n|0\n"
+                        );
+                    }
+                    else if (i == 2) {
+                        basicWrite.write(
+                            rEmpId + 
+                            "|Marla|Smith|f|marlasmith@email.com|Math|Department Head|2000|They are good|ufv.ca/marlasmith\n"
+                        );
+                        addWrite.write(rEmpId +
+                        "|Volunteerd 60 days|no\n"
+                        );
+                        facWrite.write(rEmpId +
+                        "|full-time|n|0\n"
+                        );
+                    }
+                    else if (i == 3) {
+                        basicWrite.write(
+                            rEmpId + 
+                            "|George|Smith|m|georgesmith@email.com|Physics|Department Head|2000|They are good|ufv.ca/georgesmith\n"
+                        );
+                        addWrite.write(rEmpId +
+                        "|Volunteerd 60 days|no\n"
+                        );
+                        facWrite.write(rEmpId +
+                        "|full-time|n|0\n"
+                        );
+                    }
+                    else if (n == 4) {
+                        basicWrite.write(
+                            rEmpId + 
+                            "|Dan|Smith|m|dansmith@email.com|History|Department Head|2000|They are good|ufv.ca/dansmith\n"
+                        );
+                        addWrite.write(rEmpId +
+                        "|Volunteerd 60 days|no\n"
+                        );
+                        facWrite.write(rEmpId +
+                        "|full-time|n|0\n"
+                        );
+                    }
+
+                    continue;
+                }
 
                 boolean isFaculty = random.nextInt(2) == 0;
 

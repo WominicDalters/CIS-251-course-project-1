@@ -1,5 +1,19 @@
-6497|Hailey|Ace|f|hailey@email.com|English|volunteer|2019|They are good|ufv.ca/HaileyAce
-9576|Kate|Smith|m|kate@email.com|History|Department Head|2020|They are bad|ufv.ca/KateSmith
-8890|Hailey|Ace|f|hailey@email.com|English|President|2009|They are bad|ufv.ca/HaileyAce
-0708|Kate|Scott|f|kate@email.com|History|volunteer|2004|They are good|none
-4094|Naomi|Jones|f|naomi@email.com|Physics|Proffesor|2000|They are good|none
+2679|John|Smith|m|johnsmith@email.com|admin|President|2000|They are good|ufv.ca/johnsmith
+9992|Marie|Smith|f|mariesmith@email.com|English|Department Head|2000|They are good|ufv.ca/mariesmith
+4413|Marla|Smith|f|marlasmith@email.com|Math|Department Head|2000|They are good|ufv.ca/marlasmith
+7620|George|Smith|m|georgesmith@email.com|Physics|Department Head|2000|They are good|ufv.ca/georgesmith
+7027|Chris|Halpert|m|chris@email.com|Physics|Professor|2013|They are bad|none
+1875|Liam|Jones|f|liam@email.com|Physics|volunteer|2011|They are bad|ufv.ca/LiamJones
+0556|Daisy|Ace|f|daisy@email.com|Math|volunteer|2016|They are bad|ufv.ca/DaisyAce
+4629|Edward|Halpert|m|edward@email.com|Math|volunteer|2000|They are good|ufv.ca/EdwardHalpert
+4070|Pat|Ace|f|pat@email.com|English|Professor|2001|They are bad|ufv.ca/PatAce
+7317|Naomi|Bonnell|f|naomi@email.com|Physics|volunteer|2017|They are good|none
+7174|Bob|Chase|m|bob@email.com|Math|Professor|2023|They are bad|ufv.ca/BobChase
+4006|Hailey|Scott|m|hailey@email.com|English|Professor|2005|They are good|none
+2112|Liam|Bonnell|f|liam@email.com|Math|volunteer|2013|They are bad|none
+5759|Michelle|Chase|f|michelle@email.com|English|volunteer|2005|They are good|ufv.ca/MichelleChase
+0407|Fred|Jones|m|fred@email.com|History|Professor|2013|They are bad|ufv.ca/FredJones
+7129|Chris|Bonnell|f|chris@email.com|Math|volunteer|2020|They are bad|none
+1351|Bob|Scott|f|bob@email.com|Physics|volunteer|2013|They are bad|ufv.ca/BobScott
+7292|Gwen|Halpert|m|gwen@email.com|English|Professor|2014|They are good|none
+5682|Kate|Halpert|f|kate@email.com|English|Professor|2006|They are bad|none
