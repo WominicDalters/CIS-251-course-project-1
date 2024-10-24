@@ -181,7 +181,8 @@ public class Personnel_Manager
                 printPersonnel(nEmpId);
             }
             else if (res.equals("view")) {
-                System.out.print("Would you like to search employee by employee id, first name, last name, department, join year, status, sabbatical, or # of courses?> ");
+                // System.out.print("Would you like to search employee by employee id, first name, last name, department, join year, status, sabbatical, or # of courses?> ");
+                System.out.print("Would you like to search employee by employee id, first name, last name, department, or join year> ");
                 res = scanner.nextLine().toLowerCase();
 
                 if (res.equals("employee id")) {
