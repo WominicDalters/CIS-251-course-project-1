@@ -1853,28 +1853,83 @@ public class Personnel_Manager
     */
 
     //lookup
-    static void lookup_by_id()
+    public void lookup_by_id(String id)
     {
-
+        if (personnel_hash.containsKey(id))
+        {
+            printPersonnel(id);
+        }
+        else
+        {
+            System.out.println("ID not found");
+        }
     }
 
-    static void lookup_by_first_name()
+    public void lookup_by_first_name(String first_name)
     {
-
+        if (first_name_map.containsKey(first_name))
+        {
+            List<Personnel> person_list = first_name_map.get(first_name);
+            for (int counter = 0; counter < person_list.size(); counter++)
+            {
+                String employee_id = person_list.get(counter).get_employee_id();
+                printPersonnel(employee_id);
+            }
+        }
+        else
+        {
+            System.out.println("There is no such first name");
+        }
     }
 
-    static void lookup_by_last_name()
+    public void lookup_by_last_name( String last_name)
     {
-
+        if (last_name_map.containsKey(last_name))
+        {
+            List<Personnel> person_list = last_name_map.get(last_name);
+            for(int counter = 0; counter < person_list.size(); counter++)
+            {
+                String employee_id = person_list.get(counter).get_employee_id();
+                printPersonnel(employee_id);
+            }
+        }
+        else
+        {
+            System.out.println("There is no such last name");
+        }
     }
 
-    static void lookup_by_department()
+    public void lookup_by_department(String department)
     {
-
+        if (department_map.containsKey(department))
+        {
+            List<Personnel> person_list = department_map.get(department);
+            for(int counter = 0; counter < person_list.size(); counter++)
+            {
+                String employee_id = person_list.get(counter).get_employee_id();
+                printPersonnel(employee_id);
+            }
+        }
+        else
+        {
+            System.out.println("There is no such department");
+        }
     }
 
-    static void lookup_by_join_year()
+    public void lookup_by_join_year(Integer join_year)
     {
-
+        if (join_year_map.containsKey(join_year))
+        {
+            List<Personnel> person_list = join_year_map.get(join_year);
+            for(int counter = 0; counter < person_list.size(); counter++)
+            {
+                String employee_id = person_list.get(counter).get_employee_id();
+                printPersonnel(employee_id);
+            }
+        }
+        else
+        {
+            System.out.println("Join year not found");
+        }
     }
 }
