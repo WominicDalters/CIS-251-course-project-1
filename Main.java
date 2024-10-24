@@ -115,8 +115,8 @@ public class Main
                 {
                     String data = reader.nextLine();
                     String[] attributes = data.split("\\|", -1);
-                    UFV_manager.change_volunteer_activities(attributes[0], attributes[1]);
-                    UFV_manager.change_on_leave(attributes[0], attributes[2]);
+                    UFV_manager.update_volunteer_activities(attributes[0], attributes[1]);
+                    UFV_manager.update_on_leave(attributes[0], attributes[2]);
                 }
             }
             catch(FileNotFoundException exception)

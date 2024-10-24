@@ -1124,8 +1124,6 @@ public class Personnel_Manager
             join_year_list.add(Person);
             join_year_map.put(join_year, join_year_list);
         }
-
-
     }
 
     public void remove_department(String id)
@@ -1839,12 +1837,12 @@ public class Personnel_Manager
         
     }
 
-    /*
+    
     //methods for updating personnel
     public void change_faculty(String id, Faculty new_faculty) {
         personnel_hash.get(id).change_faculty(new_faculty);
     }
-
+    /*
     public void change_volunteer_activities(String id, String new_volunteer_activities) {
         personnel_hash.get(id).change_volunteer_activities(new_volunteer_activities);
     }
