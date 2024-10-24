@@ -338,13 +338,12 @@ public class Personnel_Manager
                         printPersonnel(empId);
                     }
                     else if (res.equals("department")) {
-                        // TODO
-                        // System.out.print("Enter new department> ");
+                        System.out.print("Enter new department> ");
 
-                        // res = scanner.nextLine();
-                        // personnel_hash.get(empId).change_department(res);
+                        res = scanner.nextLine();
+                        update_department(empId, res);
                         
-                        // printPersonnel(empId);
+                        printPersonnel(empId);
                     }
                     else if (res.equals("role")) {
                         System.out.print("Enter new role> ");
@@ -355,13 +354,12 @@ public class Personnel_Manager
                         printPersonnel(empId);
                     }
                     else if (res.equals("join year")) {
-                        // TODO
-                        // System.out.print("Enter new join year> ");
+                        System.out.print("Enter new join year> ");
 
-                        // res = scanner.nextLine();
-                        // personnel_hash.get(empId).change_join_year(Integer.valueOf(res));
+                        res = scanner.nextLine();
+                        update_join_year(empId, Integer.valueOf(res));
 
-                        // printPersonnel(empId);
+                        printPersonnel(empId);
 
                     }
                     else if (res.equals("bio")) {
