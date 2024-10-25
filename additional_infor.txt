@@ -1,0 +1,10 @@
+7325|Volunteerd 60 days|no
+1688|Volunteerd 60 days|no
+4106|Volunteerd 60 days|no
+5914|Volunteerd 60 days|no
+6585|Volunteerd 60 days|no
+2480|Volunteered 60 days|sabbatical
+7920|Volunteered 60 days|vacation
+9911|Volunteered 0 days|parental
+9534|Volunteered 60 days|parental
+6164|Volunteered 60 days|parental

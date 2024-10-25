@@ -186,6 +186,7 @@ public class Personnel_Manager
 
     }
 
+    // Allows changes to hashmap from command line
     public void poll_updates() {
 
         Scanner scanner = new Scanner(System.in);
@@ -1122,16 +1123,6 @@ public class Personnel_Manager
         person.remove_on_leave(); 
         personnel_hash.put(id, person); 
     }
-
-
-
-
-
-
-
-
-
-
 
     //printing personnel
     public String printPersonnel(String empId) {

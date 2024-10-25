@@ -52,9 +52,9 @@ public class File_Generator {
 
         try 
         {
-            FileWriter basicWrite = new FileWriter("test_basic_info.txt");
-            FileWriter addWrite = new FileWriter("test_additional_info.txt");
-            FileWriter facWrite = new FileWriter("test_faculty_info.txt");
+            FileWriter basicWrite = new FileWriter("basic_info.txt");
+            FileWriter addWrite = new FileWriter("additional_infor.txt");
+            FileWriter facWrite = new FileWriter("faculty.txt");
 
 
             ArrayList<String> usedIds = new ArrayList<>();

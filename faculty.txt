@@ -1,2 +1,8 @@
-0000|full-time|n|4
-0001|full-time|n|4
+7325|full-time|n|0
+1688|full-time|n|0
+4106|full-time|n|0
+5914|full-time|n|0
+6585|full-time|n|0
+2480|part-time|y|5
+7920|full-time|n|3
+9534|part-time|n|0

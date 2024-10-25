@@ -1,2 +1,10 @@
-0000|Jim|Halpert|male|jim@gmail.com|general|instructor|2004|He is good|www.com
-0001|Pam|Halpert|female|pam@gmail.com|general|instructor|2004|She is good|www.com
+7325|John|Smith|m|johnsmith@email.com|admin|President|2000|They are good|ufv.ca/johnsmith
+1688|Marie|Smith|f|mariesmith@email.com|English|Department Head|2000|They are good|ufv.ca/mariesmith
+4106|Marla|Smith|f|marlasmith@email.com|Math|Department Head|2000|They are good|ufv.ca/marlasmith
+5914|George|Smith|m|georgesmith@email.com|Physics|Department Head|2000|They are good|ufv.ca/georgesmith
+6585|Dan|Smith|m|dansmith@email.com|History|Department Head|2000|They are good|ufv.ca/dansmith
+2480|Pat|Halpert|f|pat@email.com|Math|Professor|2016|They are good|none
+7920|Bob|Scott|f|bob@email.com|History|Professor|2019|They are good|ufv.ca/BobScott
+9911|Ian|Halpert|m|ian@email.com|Physics|Volunteer|2000|They are good|none
+9534|Naomi|Chase|m|naomi@email.com|History|Professor|2010|They are bad|none
+6164|Chris|Ace|m|chris@email.com|History|Volunteer|2003|They are bad|ufv.ca/ChrisAce

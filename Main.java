@@ -47,20 +47,13 @@ public class Main
 
         File faculty = new File("faculty.txt");
         File basicInfo = new File("basic_info.txt");
-        File additionalInfo = new File("additional_info.txt");
+        File additionalInfo = new File("additional_infor.txt");
         
-        boolean TESTING = true;
-        if (TESTING) {
-            File_Generator fg = new File_Generator();
+        File_Generator fg = new File_Generator();
 
-            // This takes in argument that states number of employees
-            // Max 9999
-            fg.generate_all(10);
-
-            faculty = new File("test_faculty_info.txt");
-            basicInfo = new File("test_basic_info.txt");
-            additionalInfo = new File("test_additional_info.txt");
-        }
+        // This takes in argument that states number of employees
+        // Max 9999
+        fg.generate_all(10);
         
 
 
