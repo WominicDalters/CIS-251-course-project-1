@@ -220,8 +220,8 @@ public class Personnel_Manager
                 printPersonnel(nEmpId);
             }
             else if (res.equals("view")) {
-                System.out.print("Would you like to search employee by employee id, first name, last name, department, join year, status, sabbatical, or # of courses?> ");
-                // System.out.print("Would you like to search employee by employee id, first name, last name, department, or join year> ");
+                // System.out.print("Would you like to search employee by employee id, first name, last name, department, join year, status, sabbatical, or # of courses?> ");
+                System.out.print("Would you like to search employee by employee id, first name, last name, department, or join year> ");
                 res = scanner.nextLine().toLowerCase();
 
                 if (res.equals("employee id")) {
@@ -259,25 +259,24 @@ public class Personnel_Manager
                     lookup_by_join_year(Integer.valueOf(res));
                 }
                 else if (res.equals("status")) {
-                    System.out.print("Enter 1 for full-time, 0 for part-time> ");
-                    res = scanner.nextLine();
-                    Integer iRes = Integer.valueOf(res);
+                    // System.out.print("Enter status (1 for full-time or 0 for part-time)> ");
+                    // res = scanner.nextLine();
 
-                    lookup_by_status((iRes == 1));
+                    // if (status_map.containsKey(Integer.valueOf(res))) {
+
+                    //     for (Personnel p : status_map.get(res)) {
+                    //         printPersonnel(p.get_employee_id());
+                    //     }
+                    // }
+                    // else {
+                    //     System.out.println("Status " + res + " not found");
+                    // }
                 }
                 else if (res.equals("sabbatical")) {
-                    System.out.print("Enter 1 for sabbatical, 0 for no sabbatical> ");
-                    res = scanner.nextLine();
-                    Integer iRes = Integer.valueOf(res);
 
-                    lookup_by_sabbatical(iRes == 1);
                 }
                 else if (res.equals("# of courses")) {
-                    System.out.print("Enter number of courses teaching> ");
-                    res = scanner.nextLine();
-                    Integer iRes = Integer.valueOf(res);
 
-                    lookup_by_courses(iRes);
                 }
 
 
@@ -410,10 +409,10 @@ public class Personnel_Manager
                         Integer iRes = Integer.valueOf(res);
 
                         if (iRes == 1) {
-                            update_status(empId, true);
+                            personnel_hash.get(empId).get_faculty().change_full_time(true);
                         }
                         else {
-                            update_status(empId, false);
+                            personnel_hash.get(empId).get_faculty().change_full_time(false);
                         }
 
                         printPersonnel(empId);
@@ -425,10 +424,10 @@ public class Personnel_Manager
                         Integer iRes = Integer.valueOf(res);
 
                         if (iRes == 1) {
-                            update_sabbatical(empId, true);
+                            personnel_hash.get(empId).get_faculty().change_sabbatical(true);
                         }
                         else {
-                            update_sabbatical(empId, false);
+                            personnel_hash.get(empId).get_faculty().change_sabbatical(false);
                         }
 
                         printPersonnel(empId);
@@ -439,7 +438,7 @@ public class Personnel_Manager
                         res = scanner.nextLine();
                         Integer iRes = Integer.valueOf(res);
 
-                        update_courses_teaching(empId, iRes);
+                        personnel_hash.get(empId).get_faculty().changes_courses_teaching(iRes);
 
                         printPersonnel(empId);
                     }
@@ -683,181 +682,13 @@ public class Personnel_Manager
         }
     }
     
-    public void update_status(String id, boolean new_status)
-    {
-        Personnel Person = personnel_hash.get(id);
-        String first_name = Person.get_first_name();
-        String last_name = Person.get_last_name();
-        String department = Person.get_department();
-        Integer join_year = Person.get_join_year();
-
-        boolean status = Person.get_faculty().get_full_time();
-
-
-
-        //changing the first name
-        Person.get_faculty().change_full_time(new_status);
-        personnel_hash.put(id, Person);
-
-        //update hashmap by first_name
-        if (status_map.containsKey(status)) //
-        {
-            //remove Person from the old key
-            List<String> status_list = status_map.get(status);
-            status_list.remove(id);
-            status_map.put(status, status_list);
-
-            //add person to the new key
-            if (status_map.containsKey(new_status)) //if there is already a key for the new_name in the hashmap
-            {
-                List<String> new_status_list = status_map.get(status);
-                new_status_list.add(id);
-                status_map.put(new_status, new_status_list);
-            }
-            else //if there is no key for the name in teh hashmap
-            {
-                List<String> created_status_list = new ArrayList<>();
-                created_status_list.add(id);
-                status_map.put(new_status, created_status_list);
-            }
-
-        }
-        else
-        {
-            if (status_map.containsKey(new_status)) //if there is already a key for the new_name in the hashmap
-            {
-                List<String> new_status_list = status_map.get(status);
-                new_status_list.add(id);
-                status_map.put(new_status, new_status_list);
-            }
-            else //if there is no key for the name in teh hashmap
-            {
-                List<String> created_status_list = new ArrayList<>();
-                created_status_list.add(id);
-                status_map.put(new_status, created_status_list);
-            }
-        }
-
-    }
-
-    public void update_sabbatical(String id, boolean new_sabbatical)
-    {
-        Personnel Person = personnel_hash.get(id);
-        String first_name = Person.get_first_name();
-        String last_name = Person.get_last_name();
-        String department = Person.get_department();
-        Integer join_year = Person.get_join_year();
-
-        boolean sabbatical = Person.get_faculty().get_sabbatical();
-
-
-
-        //changing the first name
-        Person.get_faculty().change_sabbatical(new_sabbatical);
-        personnel_hash.put(id, Person);
-
-        //update hashmap by first_name
-        if (sabbatical_map.containsKey(sabbatical)) //
-        {
-            //remove Person from the old key
-            List<String> sabbatical_list = sabbatical_map.get(sabbatical);
-            sabbatical_list.remove(id);
-            sabbatical_map.put(sabbatical, sabbatical_list);
-
-            //add person to the new key
-            if (sabbatical_map.containsKey(new_sabbatical)) //if there is already a key for the new_name in the hashmap
-            {
-                List<String> new_sabbatical_list = sabbatical_map.get(sabbatical);
-                new_sabbatical_list.add(id);
-                sabbatical_map.put(new_sabbatical, new_sabbatical_list);
-            }
-            else //if there is no key for the name in teh hashmap
-            {
-                List<String> created_sabbatical_list = new ArrayList<>();
-                created_sabbatical_list.add(id);
-                sabbatical_map.put(new_sabbatical, created_sabbatical_list);
-            }
-
-        }
-        else
-        {
-            if (sabbatical_map.containsKey(new_sabbatical)) //if there is already a key for the new_name in the hashmap
-            {
-                List<String> new_sabbatical_list = sabbatical_map.get(sabbatical);
-                new_sabbatical_list.add(id);
-                sabbatical_map.put(new_sabbatical, new_sabbatical_list);
-            }
-            else //if there is no key for the name in teh hashmap
-            {
-                List<String> created_sabbatical_list = new ArrayList<>();
-                created_sabbatical_list.add(id);
-                sabbatical_map.put(new_sabbatical, created_sabbatical_list);
-            }
-        }
-
-    }
-
-    public void update_courses_teaching(String id, Integer new_courses)
-    {
-        Personnel Person = personnel_hash.get(id);
-        String first_name = Person.get_first_name();
-        String last_name = Person.get_last_name();
-        String department = Person.get_department();
-        Integer join_year = Person.get_join_year();
-
-        Integer courses = Person.get_faculty().get_courses_teaching();
-
-
-
-        //changing the first name
-        Person.get_faculty().changes_courses_teaching(new_courses);
-        personnel_hash.put(id, Person);
-
-        //update hashmap by first_name
-        if (num_of_courses_map.containsKey(courses)) //
-        {
-            //remove Person from the old key
-            List<String> courses_list = num_of_courses_map.get(courses);
-            courses_list.remove(id);
-            num_of_courses_map.put(courses, courses_list);
-
-            //add person to the new key
-            if (num_of_courses_map.containsKey(new_courses)) //if there is already a key for the new_name in the hashmap
-            {
-                List<String> new_courses_list = num_of_courses_map.get(courses);
-                new_courses_list.add(id);
-                num_of_courses_map.put(new_courses, new_courses_list);
-            }
-            else //if there is no key for the name in teh hashmap
-            {
-                List<String> created_courses_list = new ArrayList<>();
-                created_courses_list.add(id);
-                num_of_courses_map.put(new_courses, created_courses_list);
-            }
-
-        }
-        else
-        {
-            if (num_of_courses_map.containsKey(new_courses)) //if there is already a key for the new_name in the hashmap
-            {
-                List<String> new_courses_list = num_of_courses_map.get(courses);
-                new_courses_list.add(id);
-                num_of_courses_map.put(new_courses, new_courses_list);
-            }
-            else //if there is no key for the name in teh hashmap
-            {
-                List<String> created_courses_list = new ArrayList<>();
-                created_courses_list.add(id);
-                num_of_courses_map.put(new_courses, created_courses_list);
-            }
-        }
-
-    }
-
-
     public void update_sex(String id, String new_sex)
     {
         Personnel Person = personnel_hash.get(id);
+        String first_name = Person.get_first_name();
+        String last_name = Person.get_last_name();
+        String department = Person.get_department();
+        Integer join_year = Person.get_join_year();
 
 
 
@@ -870,6 +701,10 @@ public class Personnel_Manager
     public void update_email_address(String id, String new_email_address)
     {
         Personnel person = personnel_hash.get(id);
+        String first_name = person.get_first_name();
+        String last_name = person.get_last_name();
+        String department = person.get_department();
+        Integer join_year = person.get_join_year();
 
         // Changing the email_address
         person.change_email_address(new_email_address);
@@ -880,6 +715,10 @@ public class Personnel_Manager
     public void update_role(String id, String new_role)
     {
         Personnel person = personnel_hash.get(id);
+        String first_name = person.get_first_name();
+        String last_name = person.get_last_name();
+        String department = person.get_department();
+        Integer join_year = person.get_join_year();
 
         // Changing the role
         person.change_role(new_role);
@@ -890,6 +729,10 @@ public class Personnel_Manager
     public void update_bio(String id, String new_bio)
     {
         Personnel person = personnel_hash.get(id);
+        String first_name = person.get_first_name();
+        String last_name = person.get_last_name();
+        String department = person.get_department();
+        Integer join_year = person.get_join_year();
 
         // Changing the bio
         person.change_bio(new_bio);
@@ -900,6 +743,10 @@ public class Personnel_Manager
     public void update_school_web_link(String id, String new_school_web_link)
     {
         Personnel person = personnel_hash.get(id);
+        String first_name = person.get_first_name();
+        String last_name = person.get_last_name();
+        String department = person.get_department();
+        Integer join_year = person.get_join_year();
 
         // Changing the school_web_link
         person.change_school_web_link(new_school_web_link);
@@ -910,6 +757,10 @@ public class Personnel_Manager
     public void update_volunteer_activities(String id, String new_volunteer_activities)
     {
         Personnel person = personnel_hash.get(id);
+        String first_name = person.get_first_name();
+        String last_name = person.get_last_name();
+        String department = person.get_department();
+        Integer join_year = person.get_join_year();
 
         // Changing the volunteer_activities
         person.change_volunteer_activities(new_volunteer_activities);
@@ -920,6 +771,10 @@ public class Personnel_Manager
     public void update_on_leave(String id, String new_on_leave)
     {
         Personnel person = personnel_hash.get(id);
+        String first_name = person.get_first_name();
+        String last_name = person.get_last_name();
+        String department = person.get_department();
+        Integer join_year = person.get_join_year();
 
         // Changing the on_leave status
         person.change_on_leave(new_on_leave);
@@ -1266,54 +1121,6 @@ public class Personnel_Manager
         else
         {
             System.out.println("Join year not found");
-        }
-    }
-
-    public void lookup_by_status(boolean status)
-    {
-        if (status_map.containsKey(status))
-        {
-            List<String> person_list = status_map.get(status);
-            for (int counter = 0; counter < person_list.size(); counter++)
-            {
-                printPersonnel(person_list.get(counter));
-            }
-        }
-        else
-        {
-            System.out.println("There is no such status");
-        }
-    }
-
-    public void lookup_by_sabbatical(boolean  sabbatical)
-    {
-        if (sabbatical_map.containsKey(sabbatical))
-        {
-            List<String> person_list = sabbatical_map.get(sabbatical);
-            for (int counter = 0; counter < person_list.size(); counter++)
-            {
-                printPersonnel(person_list.get(counter));
-            }
-        }
-        else
-        {
-            System.out.println("There is no such sabbatical");
-        }
-    }
-
-    public void lookup_by_courses(Integer courses)
-    {
-        if (num_of_courses_map.containsKey(courses))
-        {
-            List<String> person_list = num_of_courses_map.get(courses);
-            for (int counter = 0; counter < person_list.size(); counter++)
-            {
-                printPersonnel(person_list.get(counter));
-            }
-        }
-        else
-        {
-            System.out.println("There is no such number of courses");
         }
     }
 }
