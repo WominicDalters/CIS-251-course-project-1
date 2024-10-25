@@ -2124,7 +2124,7 @@ public class Personnel_Manager
             for (String department : department_list) {
                 // Dep head
 
-                summaryWrite.write("---Department Head of " + department + "---\n");
+                summaryWrite.write("\n---Department Head of " + department + "---\n");
                 for(HashMap.Entry<String, Personnel> entry : personnel_hash.entrySet()) {
                     if(entry.getValue().get_role().equals("Department Head") && entry.getValue().get_department().equals(department)) {
                         summaryWrite.write(printPersonnel(entry.getKey()));
@@ -2134,7 +2134,7 @@ public class Personnel_Manager
                     }
                 }
                 // Profs
-                summaryWrite.write("---" + department + " Professors---\n");
+                summaryWrite.write("\n---" + department + " Professors---\n");
                 for(HashMap.Entry<String, Personnel> entry : personnel_hash.entrySet()) {
                     if(entry.getValue().get_role().equals("Professor") && entry.getValue().get_department().equals(department)) {
                         summaryWrite.write(printPersonnel(entry.getKey()));
@@ -2142,12 +2142,27 @@ public class Personnel_Manager
                 }
     
                 // Volunteers
-                summaryWrite.write("---" + department + " Volunteers---\n");
+                summaryWrite.write("\n---" + department + " Volunteers---\n");
                 for(HashMap.Entry<String, Personnel> entry : personnel_hash.entrySet()) {
                     if(entry.getValue().get_role().equals("Volunteer") && entry.getValue().get_department().equals(department)) {
                         summaryWrite.write(printPersonnel(entry.getKey()));
                     }
-                }   
+                }
+                
+                // Other
+                summaryWrite.write("\n---Others from " + department + "---\n");
+                for (HashMap.Entry<String, Personnel> entry : personnel_hash.entrySet()) {
+                    if (
+                        !entry.getValue().get_role().equals("President") &&
+                        !entry.getValue().get_role().equals("Department Head") &&
+                        !entry.getValue().get_role().equals("Professor") && 
+                        !entry.getValue().get_role().equals("Volunteer") &&
+                        entry.getValue().get_department().equals(department)
+                        ) 
+                        {
+                            summaryWrite.write(printPersonnel(entry.getKey()));
+                        }
+                }
             }
             summaryWrite.close();
         }
