@@ -269,7 +269,7 @@ public class Personnel_Manager
             }
             // View Person
             else if (res.equals("view")) {
-                System.out.print("Would you like to search employee by employee id, first name, last name, department, join year, status, sabbatical, or # of courses?> ");
+                System.out.print("Would you like to search employee by employee id, first name, last name, department, join year, status, sabbatical, # of courses, or show all (all)?> ");
                 // System.out.print("Would you like to search employee by employee id, first name, last name, department, or join year> ");
                 res = scanner.nextLine().toLowerCase();
 
@@ -327,6 +327,9 @@ public class Personnel_Manager
                     Integer iRes = Integer.valueOf(res);
 
                     lookup_by_courses(iRes);
+                }
+                else if (res.equals("all")) {
+                    viewMap();
                 }
 
 
@@ -510,23 +513,12 @@ public class Personnel_Manager
 
     }
 
-
-
-
-
-
-
-
     //updating attributes
+    // First 7 update methods essential for maintaining the array list maps
     public void update_first_name(String id, String new_first_name)
     {
         Personnel Person = personnel_hash.get(id);
         String first_name = Person.get_first_name();
-        String last_name = Person.get_last_name();
-        String department = Person.get_department();
-        Integer join_year = Person.get_join_year();
-
-
 
         //changing the first name
         Person.change_first_name(new_first_name);
@@ -576,11 +568,7 @@ public class Personnel_Manager
     public void update_last_name(String id, String new_last_name)
     {
         Personnel Person = personnel_hash.get(id);
-        String first_name = Person.get_first_name();
         String last_name = Person.get_last_name();
-        String department = Person.get_department();
-        Integer join_year = Person.get_join_year();
-
 
 
         //changing the last name
@@ -630,10 +618,7 @@ public class Personnel_Manager
     public void update_department(String id, String new_department)
     {
         Personnel Person = personnel_hash.get(id);
-        String first_name = Person.get_first_name();
-        String last_name = Person.get_last_name();
         String department = Person.get_department();
-        Integer join_year = Person.get_join_year();
 
 
 
@@ -684,9 +669,6 @@ public class Personnel_Manager
     public void update_join_year(String id, int new_join_year)
     {
         Personnel Person = personnel_hash.get(id);
-        String first_name = Person.get_first_name();
-        String last_name = Person.get_last_name();
-        String department = Person.get_department();
         Integer join_year = Person.get_join_year();
 
 
@@ -738,9 +720,6 @@ public class Personnel_Manager
     public void update_status(String id, boolean new_status)
     {
         Personnel Person = personnel_hash.get(id);
-
-        // boolean status = Person.get_faculty().get_full_time();
-
         boolean status = Person.get_faculty().get_full_time();
 
         //changing the first name
@@ -793,14 +772,7 @@ public class Personnel_Manager
     public void update_sabbatical(String id, boolean new_sabbatical)
     {
         Personnel Person = personnel_hash.get(id);
-        String first_name = Person.get_first_name();
-        String last_name = Person.get_last_name();
-        String department = Person.get_department();
-        Integer join_year = Person.get_join_year();
-
         boolean sabbatical = Person.get_faculty().get_sabbatical();
-
-
 
         //changing the first name
         Person.get_faculty().change_sabbatical(new_sabbatical);
@@ -850,11 +822,6 @@ public class Personnel_Manager
     public void update_courses_teaching(String id, Integer new_courses)
     {
         Personnel Person = personnel_hash.get(id);
-        String first_name = Person.get_first_name();
-        String last_name = Person.get_last_name();
-        String department = Person.get_department();
-        Integer join_year = Person.get_join_year();
-
         Integer courses = Person.get_faculty().get_courses_teaching();
 
 
@@ -908,9 +875,6 @@ public class Personnel_Manager
     public void update_sex(String id, String new_sex)
     {
         Personnel Person = personnel_hash.get(id);
-
-
-
         //changing the sex
         Person.change_sex(new_sex);
         personnel_hash.put(id, Person);
@@ -983,6 +947,8 @@ public class Personnel_Manager
 
 
 
+    // Have to remove all of these attributes in order to also remove
+    // from the other hashmaps
     public void remove_person(String id) {
         Personnel Person = personnel_hash.get(id);
         remove_first_name(id);
@@ -1277,16 +1243,10 @@ public class Personnel_Manager
     //methods for updating personnel
     public void change_faculty(String id, Faculty new_faculty) {
         personnel_hash.get(id).change_faculty(new_faculty);
+        update_status(id, new_faculty.get_full_time());
+        update_sabbatical(id, new_faculty.get_sabbatical());
+        update_courses_teaching(id, new_faculty.get_courses_teaching());
     }
-    /*
-    public void change_volunteer_activities(String id, String new_volunteer_activities) {
-        personnel_hash.get(id).change_volunteer_activities(new_volunteer_activities);
-    }
-
-    public void change_on_leave(String id, String new_on_leave) {
-        personnel_hash.get(id).change_on_leave(new_on_leave);
-    }
-    */
 
     //lookup
     public void lookup_by_id(String id)
