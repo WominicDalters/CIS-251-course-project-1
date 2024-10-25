@@ -11,6 +11,7 @@ public class Personnel_Manager
     //Hashmap by id
     private HashMap<String /*employee_id*/, Personnel> personnel_hash = new HashMap<>();
 
+    // Lists in these maps contain employee ids
     //hashmap by first_name
     private HashMap<String, List<String>> first_name_map = new HashMap<>();
 
@@ -140,6 +141,51 @@ public class Personnel_Manager
         }
     }
 
+    public void add_faculty(String id, Faculty faculty) {
+        Personnel Person = personnel_hash.get(id);
+
+        boolean status = faculty.get_full_time();
+        if (status_map.containsKey(status))
+        {
+            List<String> status_list = status_map.get(status);
+            status_list.add(id);
+            status_map.put(status, status_list);
+        }
+        else
+        {
+            List<String> new_status_list = new ArrayList<>();
+            new_status_list.add(id);
+            status_map.put(status, new_status_list);
+        }
+
+        boolean sabbatical = faculty.get_sabbatical();
+        if (sabbatical_map.containsKey(sabbatical)) {
+            List<String> sabbatical_list = sabbatical_map.get(sabbatical);
+            sabbatical_list.add(id);
+            sabbatical_map.put(sabbatical, sabbatical_list);
+        }
+        else
+        {
+            List<String> new_sabbatical_list = new ArrayList<>();
+            new_sabbatical_list.add(id);
+            sabbatical_map.put(sabbatical, new_sabbatical_list);
+        }
+
+        Integer noCourses = faculty.get_courses_teaching();
+        if (num_of_courses_map.containsKey(noCourses)) {
+            List<String> courses_list = num_of_courses_map.get(noCourses);
+            courses_list.add(id);
+            num_of_courses_map.put(noCourses, courses_list);
+        }
+        else
+        {
+            List<String> new_courses_list = new ArrayList<>();
+            new_courses_list.add(id);
+            num_of_courses_map.put(noCourses, new_courses_list);
+        }
+
+    }
+
     public void poll_updates() {
 
         Scanner scanner = new Scanner(System.in);
@@ -213,10 +259,11 @@ public class Personnel_Manager
 
                 Personnel newPerson = new Personnel(nEmpId, nFirstName, nLastName, nSex, nEmail, nDepartment, nRole, nJoinYear, nBio, nWebLink, nVolunteer, nLeaveStatus);
 
-                newPerson.change_faculty(new Faculty(nEmpId, nStatus, nSabbatical, nCourses));
+                // newPerson.change_faculty(new Faculty(nEmpId, nStatus, nSabbatical, nCourses));
 
 
                 personnel_hash.put(nEmpId, newPerson);
+                add_faculty(nEmpId, new Faculty(nEmpId, nStatus, nSabbatical, nCourses));
                 printPersonnel(nEmpId);
             }
             else if (res.equals("view")) {
@@ -262,8 +309,8 @@ public class Personnel_Manager
                     System.out.print("Enter 1 for full-time, 0 for part-time> ");
                     res = scanner.nextLine();
                     Integer iRes = Integer.valueOf(res);
-
-                    lookup_by_status((iRes == 1));
+                    boolean s = iRes.equals(1);
+                    lookup_by_status(s);
                 }
                 else if (res.equals("sabbatical")) {
                     System.out.print("Enter 1 for sabbatical, 0 for no sabbatical> ");

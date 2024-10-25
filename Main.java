@@ -55,7 +55,7 @@ public class Main
 
             // This takes in argument that states number of employees
             // Max 9999
-            fg.generate_all(9000);
+            fg.generate_all(10);
 
             faculty = new File("test_faculty_info.txt");
             basicInfo = new File("test_basic_info.txt");
@@ -71,7 +71,7 @@ public class Main
         
 
         // All files read and added to the hashmap
-
+        // Personnel newPersonnel = null;
         if (basicInfo.exists())
         {
             try
@@ -122,6 +122,8 @@ public class Main
                     String[] attributes = data.split("\\|", -1);
                     UFV_manager.update_volunteer_activities(attributes[0], attributes[1]);
                     UFV_manager.update_on_leave(attributes[0], attributes[2]);
+                    // newPersonnel.change_volunteer_activities(attributes[1]);
+                    // newPersonnel.change_on_leave(attributes[2]);
                     
                 }
                 reader.close();
@@ -160,7 +162,10 @@ public class Main
                         sabbatical,
                         Integer.parseInt(attributes[3]) // coures in semester
                     );
-                    UFV_manager.change_faculty(attributes[0], newFaculty);
+                    // UFV_manager.change_faculty(attributes[0], newFaculty);
+                    // newPersonnel.change_faculty(newFaculty);
+                    // UFV_manager.add_personnel(newPersonnel.get_employee_id(), newPersonnel);
+                    UFV_manager.add_faculty(attributes[0], newFaculty);
                 }
                 reader.close();
             }
@@ -181,5 +186,6 @@ public class Main
         UFV_manager.poll_updates();
         // print out to summary.txt
         UFV_manager.aggregate();
+        // UFV_manager.viewMap();
     }
 }
