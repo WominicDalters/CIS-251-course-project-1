@@ -12,22 +12,22 @@ public class Personnel_Manager
     private HashMap<String /*employee_id*/, Personnel> personnel_hash = new HashMap<>();
 
     //hashmap by first_name
-    private HashMap<String, List<Personnel>> first_name_map = new HashMap<>();
+    private HashMap<String, List<String>> first_name_map = new HashMap<>();
 
     //hashmap by last name
-    private HashMap<String, List<Personnel>> last_name_map = new HashMap<>();
+    private HashMap<String, List<String>> last_name_map = new HashMap<>();
 
     //Hashmap by department
-    private HashMap<String, List<Personnel>> department_map = new HashMap<>();
+    private HashMap<String, List<String>> department_map = new HashMap<>();
 
     //hashmap by join year
-    private HashMap<Integer, List<Personnel>> join_year_map = new HashMap<>();
+    private HashMap<Integer, List<String>> join_year_map = new HashMap<>();
 
-    // private HashMap<Integer, List<Personnel>> status_map = new HashMap<>();
+    private HashMap<Boolean, List<String>> status_map = new HashMap<>();
 
-    // private HashMap<String, List<Personnel>> sabbatical_map = new HashMap<>();
+    private HashMap<Boolean, List<String>> sabbatical_map = new HashMap<>();
     
-    // private HashMap<Integer, List<Personnel>> num_of_courses_map = new HashMap<>();
+    private HashMap<Integer, List<String>> num_of_courses_map = new HashMap<>();
 
 
 
@@ -47,57 +47,96 @@ public class Personnel_Manager
         String first_name = Person.get_first_name();
         if (first_name_map.containsKey(first_name))
         {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(Person);
+            List<String> first_name_list = first_name_map.get(first_name);
+            first_name_list.add(id);
             first_name_map.put(first_name, first_name_list);
         }
         else
         {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(Person);
+            List<String> new_first_name_list = new ArrayList<>();
+            new_first_name_list.add(id);
             first_name_map.put(first_name, new_first_name_list);
         }
 
         String last_name = Person.get_last_name();
         if (last_name_map.containsKey(last_name))
         {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(Person);
+            List<String> last_name_list = last_name_map.get(last_name);
+            last_name_list.add(id);
             last_name_map.put(last_name, last_name_list);
         }
         else
         {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(Person);
+            List<String> new_last_name_list = new ArrayList<>();
+            new_last_name_list.add(id);
             last_name_map.put(last_name, new_last_name_list);
         }
 
         String department = Person.get_department();
         if (department_map.containsKey(department))
         {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(Person);
+            List<String> department_list = department_map.get(department);
+            department_list.add(id);
             department_map.put(department, department_list);
         }
         else
         {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(Person);
+            List<String> new_department_list = new ArrayList<>();
+            new_department_list.add(id);
             department_map.put(department, new_department_list);
         }
 
         Integer join_year = Person.get_join_year();
         if (join_year_map.containsKey(join_year))
         {
-            List<Personnel> person_list = join_year_map.get(join_year);
-            person_list.add(Person);
+            List<String> person_list = join_year_map.get(join_year);
+            person_list.add(id);
             join_year_map.put(join_year, person_list);
         }
         else
         {
-            List<Personnel> new_person_list = new ArrayList<>();
-            new_person_list.add(Person);
+            List<String> new_person_list = new ArrayList<>();
+            new_person_list.add(id);
             join_year_map.put(join_year, new_person_list);
+        }
+
+        // // // // // //
+        if (Person.get_faculty() != null) {
+            Boolean status = Person.get_faculty().get_full_time();
+            if (status_map.containsKey(status)) {
+                List<String> person_list = status_map.get(status);
+                person_list.add(id);
+                status_map.put(status, person_list);
+            }
+            else {
+                List<String> new_person_list = new ArrayList<>();
+                new_person_list.add(id);
+                status_map.put(status, new_person_list);
+            }
+    
+            Boolean sabbatical = Person.get_faculty().get_sabbatical();
+            if (sabbatical_map.containsKey(sabbatical)) {
+                List<String> person_list = sabbatical_map.get(sabbatical);
+                person_list.add(id);
+                sabbatical_map.put(sabbatical, person_list);
+            }
+            else {
+                List<String> new_person_list = new ArrayList<>();
+                new_person_list.add(id);
+                sabbatical_map.put(sabbatical, new_person_list);
+            }
+    
+            Integer noCourses = Person.get_faculty().get_courses_teaching();
+            if (num_of_courses_map.containsKey(noCourses)) {
+                List<String> person_list = num_of_courses_map.get(noCourses);
+                person_list.add(id);
+                num_of_courses_map.put(noCourses, person_list);
+            }
+            else {
+                List<String> new_person_list = new ArrayList<>();
+                new_person_list.add(id);
+                num_of_courses_map.put(noCourses, new_person_list);
+            }
         }
     }
 
@@ -444,21 +483,21 @@ public class Personnel_Manager
         if (first_name_map.containsKey(first_name)) //
         {
             //remove Person from the old key
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.remove(Person);
+            List<String> first_name_list = first_name_map.get(first_name);
+            first_name_list.remove(id);
             first_name_map.put(first_name, first_name_list);
 
             //add person to the new key
             if (first_name_map.containsKey(new_first_name)) //if there is already a key for the new_name in the hashmap
             {
-                List<Personnel> new_first_name_list = first_name_map.get(new_first_name);
-                new_first_name_list.add(Person);
+                List<String> new_first_name_list = first_name_map.get(new_first_name);
+                new_first_name_list.add(id);
                 first_name_map.put(new_first_name, new_first_name_list);
             }
             else //if there is no key for the name in teh hashmap
             {
-                List<Personnel> created_first_name_list = new ArrayList<>();
-                created_first_name_list.add(Person);
+                List<String> created_first_name_list = new ArrayList<>();
+                created_first_name_list.add(id);
                 first_name_map.put(new_first_name, created_first_name_list);
             }
 
@@ -467,60 +506,18 @@ public class Personnel_Manager
         {
             if (first_name_map.containsKey(new_first_name)) //if there is already a key for the new_name in the hashmap
             {
-                List<Personnel> new_first_name_list = first_name_map.get(new_first_name);
-                new_first_name_list.add(Person);
+                List<String> new_first_name_list = first_name_map.get(new_first_name);
+                new_first_name_list.add(id);
                 first_name_map.put(new_first_name, new_first_name_list);
             }
             else //if there is no key for the name in teh hashmap
             {
-                List<Personnel> created_first_name_list = new ArrayList<>();
-                created_first_name_list.add(Person);
+                List<String> created_first_name_list = new ArrayList<>();
+                created_first_name_list.add(id);
                 first_name_map.put(new_first_name, created_first_name_list);
             }
         }
 
-        //update hashmap by last name
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(Person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(Person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        //update hashmap by department
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(Person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(Person);
-            department_map.put(department, new_department_list);
-        }
-
-
-        //update hashmap by join year
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> person_list = join_year_map.get(join_year);
-            person_list.add(Person);
-            join_year_map.put(join_year, person_list);
-        }
-        else
-        {
-            List<Personnel> new_person_list = new ArrayList<>();
-            new_person_list.add(Person);
-            join_year_map.put(join_year, new_person_list);
-        }
     }
 
     public void update_last_name(String id, String new_last_name)
@@ -541,21 +538,21 @@ public class Personnel_Manager
         if (last_name_map.containsKey(last_name)) //
         {
             //remove Person from the old key
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.remove(Person);
+            List<String> last_name_list = last_name_map.get(last_name);
+            last_name_list.remove(id);
             last_name_map.put(last_name, last_name_list);
 
             //add person to the new key
             if (last_name_map.containsKey(new_last_name)) //if there is already a key for the new_name in the hashmap
             {
-                List<Personnel> new_last_name_list = last_name_map.get(new_last_name);
-                new_last_name_list.add(Person);
+                List<String> new_last_name_list = last_name_map.get(new_last_name);
+                new_last_name_list.add(id);
                 last_name_map.put(new_last_name, new_last_name_list);
             }
             else //if there is no key for the name in teh hashmap
             {
-                List<Personnel> created_last_name_list = new ArrayList<>();
-                created_last_name_list.add(Person);
+                List<String> created_last_name_list = new ArrayList<>();
+                created_last_name_list.add(id);
                 last_name_map.put(new_last_name, created_last_name_list);
             }
 
@@ -564,59 +561,16 @@ public class Personnel_Manager
         {
             if (last_name_map.containsKey(new_last_name)) //if there is already a key for the new_name in the hashmap
             {
-                List<Personnel> new_last_name_list = last_name_map.get(new_last_name);
-                new_last_name_list.add(Person);
+                List<String> new_last_name_list = last_name_map.get(new_last_name);
+                new_last_name_list.add(id);
                 last_name_map.put(new_last_name, new_last_name_list);
             }
             else //if there is no key for the name in teh hashmap
             {
-                List<Personnel> created_last_name_list = new ArrayList<>();
-                created_last_name_list.add(Person);
+                List<String> created_last_name_list = new ArrayList<>();
+                created_last_name_list.add(id);
                 last_name_map.put(new_last_name, created_last_name_list);
             }
-        }
-
-        //update hashmap by first name
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(Person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(Person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        //update hashmap by department
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(Person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(Person);
-            department_map.put(department, new_department_list);
-        }
-
-
-        //update hashmap by join year
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> person_list = join_year_map.get(join_year);
-            person_list.add(Person);
-            join_year_map.put(join_year, person_list);
-        }
-        else
-        {
-            List<Personnel> new_person_list = new ArrayList<>();
-            new_person_list.add(Person);
-            join_year_map.put(join_year, new_person_list);
         }
     }
 
@@ -638,21 +592,21 @@ public class Personnel_Manager
         if (department_map.containsKey(department)) //
         {
             //remove Person from the old key
-            List<Personnel> department_list = department_map.get(department);
-            department_list.remove(Person);
+            List<String> department_list = department_map.get(department);
+            department_list.remove(id);
             department_map.put(department, department_list);
 
             //add person to the new key
             if (department_map.containsKey(department)) //if there is already a key for the new_name in the hashmap
             {
-                List<Personnel> new_department_list = department_map.get(new_department);
-                new_department_list.add(Person);
+                List<String> new_department_list = department_map.get(new_department);
+                new_department_list.add(id);
                 department_map.put(new_department, new_department_list);
             }
             else //if there is no key for the name in teh hashmap
             {
-                List<Personnel> created_department_list = new ArrayList<>();
-                created_department_list.add(Person);
+                List<String> created_department_list = new ArrayList<>();
+                created_department_list.add(id);
                 department_map.put(new_department, created_department_list);
             }
 
@@ -661,59 +615,16 @@ public class Personnel_Manager
         {
             if (department_map.containsKey(new_department)) //if there is already a key for the new_name in the hashmap
             {
-                List<Personnel> new_department_list = department_map.get(new_department);
-                new_department_list.add(Person);
+                List<String> new_department_list = department_map.get(new_department);
+                new_department_list.add(id);
                 department_map.put(new_department, new_department_list);
             }
             else //if there is no key for the name in teh hashmap
             {
-                List<Personnel> created_department_list = new ArrayList<>();
-                created_department_list.add(Person);
+                List<String> created_department_list = new ArrayList<>();
+                created_department_list.add(id);
                 department_map.put(new_department, created_department_list);
             }
-        }
-
-        //update hashmap by first name
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(Person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(Person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        //update hashmap by last_name
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(Person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(Person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-
-        //update hashmap by join year
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> person_list = join_year_map.get(join_year);
-            person_list.add(Person);
-            join_year_map.put(join_year, person_list);
-        }
-        else
-        {
-            List<Personnel> new_person_list = new ArrayList<>();
-            new_person_list.add(Person);
-            join_year_map.put(join_year, new_person_list);
         }
     }
 
@@ -735,21 +646,21 @@ public class Personnel_Manager
         if (join_year_map.containsKey(join_year)) //
         {
             //remove Person from the old key
-            List<Personnel> join_year_list = join_year_map.get(join_year);
-            join_year_list.remove(Person);
+            List<String> join_year_list = join_year_map.get(join_year);
+            join_year_list.remove(id);
             join_year_map.put(join_year, join_year_list);
 
             //add person to the new key
             if (join_year_map.containsKey(join_year)) //if there is already a key for the new_name in the hashmap
             {
-                List<Personnel> new_join_year_list = join_year_map.get(new_join_year);
-                new_join_year_list.add(Person);
+                List<String> new_join_year_list = join_year_map.get(new_join_year);
+                new_join_year_list.add(id);
                 join_year_map.put(new_join_year, new_join_year_list);
             }
             else //if there is no key for the name in teh hashmap
             {
-                List<Personnel> created_join_year_list = new ArrayList<>();
-                created_join_year_list.add(Person);
+                List<String> created_join_year_list = new ArrayList<>();
+                created_join_year_list.add(id);
                 join_year_map.put(new_join_year, created_join_year_list);
             }
 
@@ -758,59 +669,16 @@ public class Personnel_Manager
         {
             if (join_year_map.containsKey(new_join_year)) //if there is already a key for the new_name in the hashmap
             {
-                List<Personnel> new_join_year_list = join_year_map.get(new_join_year);
-                new_join_year_list.add(Person);
+                List<String> new_join_year_list = join_year_map.get(new_join_year);
+                new_join_year_list.add(id);
                 join_year_map.put(new_join_year, new_join_year_list);
             }
             else //if there is no key for the name in teh hashmap
             {
-                List<Personnel> created_join_year_list = new ArrayList<>();
-                created_join_year_list.add(Person);
+                List<String> created_join_year_list = new ArrayList<>();
+                created_join_year_list.add(id);
                 join_year_map.put(new_join_year, created_join_year_list);
             }
-        }
-
-        //update hashmap by first name
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(Person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(Person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        //update hashmap by last_name
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(Person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(Person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-
-        //update hashmap by department
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> person_list = department_map.get(department);
-            person_list.add(Person);
-            department_map.put(department, person_list);
-        }
-        else
-        {
-            List<Personnel> new_person_list = new ArrayList<>();
-            new_person_list.add(Person);
-            department_map.put(department, new_person_list);
         }
     }
     
@@ -827,63 +695,6 @@ public class Personnel_Manager
         //changing the sex
         Person.change_sex(new_sex);
         personnel_hash.put(id, Person);
-
-        //update hashmap by first_name
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(Person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(Person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        //update hashmap by last name
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(Person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(Person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        //update hashmap by department
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(Person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(Person);
-            department_map.put(department, new_department_list);
-        }
-
-
-        //update hashmap by join year
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> person_list = join_year_map.get(join_year);
-            person_list.add(Person);
-            join_year_map.put(join_year, person_list);
-        }
-        else
-        {
-            List<Personnel> new_person_list = new ArrayList<>();
-            new_person_list.add(Person);
-            join_year_map.put(join_year, new_person_list);
-        }
     }
 
     // Update email_address
@@ -898,62 +709,6 @@ public class Personnel_Manager
         // Changing the email_address
         person.change_email_address(new_email_address);
         personnel_hash.put(id, person);
-
-        // Update hashmap by first_name
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        // Update hashmap by last name
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        // Update hashmap by department
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(person);
-            department_map.put(department, new_department_list);
-        }
-
-        // Update hashmap by join year
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> person_list = join_year_map.get(join_year);
-            person_list.add(person);
-            join_year_map.put(join_year, person_list);
-        }
-        else
-        {
-            List<Personnel> new_person_list = new ArrayList<>();
-            new_person_list.add(person);
-            join_year_map.put(join_year, new_person_list);
-        }
     }
 
     // Update role
@@ -968,62 +723,6 @@ public class Personnel_Manager
         // Changing the role
         person.change_role(new_role);
         personnel_hash.put(id, person);
-
-        // Update hashmap by first_name
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        // Update hashmap by last name
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        // Update hashmap by department
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(person);
-            department_map.put(department, new_department_list);
-        }
-
-        // Update hashmap by join year
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> person_list = join_year_map.get(join_year);
-            person_list.add(person);
-            join_year_map.put(join_year, person_list);
-        }
-        else
-        {
-            List<Personnel> new_person_list = new ArrayList<>();
-            new_person_list.add(person);
-            join_year_map.put(join_year, new_person_list);
-        }
     }
 
     // Update bio
@@ -1038,62 +737,6 @@ public class Personnel_Manager
         // Changing the bio
         person.change_bio(new_bio);
         personnel_hash.put(id, person);
-
-        // Update hashmap by first_name
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        // Update hashmap by last name
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        // Update hashmap by department
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(person);
-            department_map.put(department, new_department_list);
-        }
-
-        // Update hashmap by join year
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> person_list = join_year_map.get(join_year);
-            person_list.add(person);
-            join_year_map.put(join_year, person_list);
-        }
-        else
-        {
-            List<Personnel> new_person_list = new ArrayList<>();
-            new_person_list.add(person);
-            join_year_map.put(join_year, new_person_list);
-        }
     }
 
     // Update school_web_link
@@ -1108,62 +751,6 @@ public class Personnel_Manager
         // Changing the school_web_link
         person.change_school_web_link(new_school_web_link);
         personnel_hash.put(id, person);
-
-        // Update hashmap by first_name
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        // Update hashmap by last name
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        // Update hashmap by department
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(person);
-            department_map.put(department, new_department_list);
-        }
-
-        // Update hashmap by join year
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> person_list = join_year_map.get(join_year);
-            person_list.add(person);
-            join_year_map.put(join_year, person_list);
-        }
-        else
-        {
-            List<Personnel> new_person_list = new ArrayList<>();
-            new_person_list.add(person);
-            join_year_map.put(join_year, new_person_list);
-        }
     }
 
     // Update volunteer_activities
@@ -1178,62 +765,6 @@ public class Personnel_Manager
         // Changing the volunteer_activities
         person.change_volunteer_activities(new_volunteer_activities);
         personnel_hash.put(id, person);
-
-        // Update hashmap by first_name
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        // Update hashmap by last name
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        // Update hashmap by department
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(person);
-            department_map.put(department, new_department_list);
-        }
-
-        // Update hashmap by join year
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> person_list = join_year_map.get(join_year);
-            person_list.add(person);
-            join_year_map.put(join_year, person_list);
-        }
-        else
-        {
-            List<Personnel> new_person_list = new ArrayList<>();
-            new_person_list.add(person);
-            join_year_map.put(join_year, new_person_list);
-        }
     }
 
     // Update on_leave
@@ -1248,62 +779,6 @@ public class Personnel_Manager
         // Changing the on_leave status
         person.change_on_leave(new_on_leave);
         personnel_hash.put(id, person);
-
-        // Update hashmap by first_name
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        // Update hashmap by last name
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        // Update hashmap by department
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(person);
-            department_map.put(department, new_department_list);
-        }
-
-        // Update hashmap by join year
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> person_list = join_year_map.get(join_year);
-            person_list.add(person);
-            join_year_map.put(join_year, person_list);
-        }
-        else
-        {
-            List<Personnel> new_person_list = new ArrayList<>();
-            new_person_list.add(person);
-            join_year_map.put(join_year, new_person_list);
-        }
     }
 
 
@@ -1328,59 +803,10 @@ public class Personnel_Manager
         //remove by first_name
         if (first_name_map.containsKey(old_first_name))
         {
-            List<Personnel> first_name_list = first_name_map.get(old_first_name);
-            first_name_list.remove(Person);
+            List<String> first_name_list = first_name_map.get(old_first_name);
+            first_name_list.remove(id);
             first_name_map.put(old_first_name, first_name_list);
         }
-
-
-        //remove by last_name
-        String last_name = Person.get_last_name();
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(Person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(Person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        //remove by department
-        String department = Person.get_department();
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(Person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(Person);
-            department_map.put(department, new_department_list);
-        }
-
-
-        //remove by join year
-        int join_year = Person.get_join_year();
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> join_year_list = join_year_map.get(join_year);
-            join_year_list.add(Person);
-            join_year_map.put(join_year, join_year_list);
-        }
-        else
-        {
-            List<Personnel> join_year_list = new ArrayList<>();
-            join_year_list.add(Person);
-            join_year_map.put(join_year, join_year_list);
-        }
-
-
     }
 
     public void remove_last_name(String id)
@@ -1391,62 +817,16 @@ public class Personnel_Manager
         Person.remove_last_name(); //removed the last_name from the Personnel
         personnel_hash.put(id, Person); //putting the Person into the id hashmap
 
-        //remove by first_name
-        String first_name = Person.get_first_name();
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(Person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(Person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-
         //remove by last_name
         
 
         if (last_name_map.containsKey(old_last_name))
         {
-            List<Personnel> last_name_list = last_name_map.get(old_last_name);
-            last_name_list.remove(Person);
+            List<String> last_name_list = last_name_map.get(old_last_name);
+            last_name_list.remove(id);
             last_name_map.put(old_last_name, last_name_list);
         }
 
-        //remove by department
-        String department = Person.get_department();
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(Person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(Person);
-            department_map.put(department, new_department_list);
-        }
-
-
-        //remove by join year
-        int join_year = Person.get_join_year();
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> join_year_list = join_year_map.get(join_year);
-            join_year_list.add(Person);
-            join_year_map.put(join_year, join_year_list);
-        }
-        else
-        {
-            List<Personnel> join_year_list = new ArrayList<>();
-            join_year_list.add(Person);
-            join_year_map.put(join_year, join_year_list);
-        }
     }
 
     public void remove_department(String id)
@@ -1456,64 +836,15 @@ public class Personnel_Manager
         String old_department = Person.get_department(); //getting the department that will be removed
         Person.remove_department(); //removed the department from the Personnel
         personnel_hash.put(id, Person); //putting the Person into the id hashmap
-
-        //remove by first_name
-        String first_name = Person.get_first_name();
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(Person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(Person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-
-        //remove by last_name
-        String last_name = Person.get_last_name();
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(Person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(Person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
         
 
         //remove by department
         if (department_map.containsKey(old_department))
         {
-            List<Personnel> department_list = department_map.get(old_department);
-            department_list.remove(Person);
+            List<String> department_list = department_map.get(old_department);
+            department_list.remove(id);
             department_map.put(old_department, department_list);
         }
-
-
-        //remove by join year
-        int join_year = Person.get_join_year();
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> join_year_list = join_year_map.get(join_year);
-            join_year_list.add(Person);
-            join_year_map.put(join_year, join_year_list);
-        }
-        else
-        {
-            List<Personnel> join_year_list = new ArrayList<>();
-            join_year_list.add(Person);
-            join_year_map.put(join_year, join_year_list);
-        }
-
-
     }
 
     public void remove_join_year(String id)
@@ -1524,61 +855,11 @@ public class Personnel_Manager
         Person.remove_join_year(); //removed the join_year from the Personnel
         personnel_hash.put(id, Person); //putting the Person into the id hashmap
 
-        //remove by first_name
-        String first_name = Person.get_first_name();
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(Person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(Person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-
-        //remove by last_name
-        String last_name = Person.get_last_name();
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(Person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(Person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-        
-
-        //remove by department
-        String department = Person.get_department();
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(Person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(Person);
-            department_map.put(department, new_department_list);
-        }
-
-        
-
-
         //remove by join year
         if (join_year_map.containsKey(old_join_year))
         {
-            List<Personnel> join_year_list = join_year_map.get(old_join_year);
-            join_year_list.remove(Person);
+            List<String> join_year_list = join_year_map.get(old_join_year);
+            join_year_list.remove(id);
             join_year_map.put(old_join_year, join_year_list);
         }
     }
@@ -1588,67 +869,7 @@ public class Personnel_Manager
         //remove by id
         Personnel Person = personnel_hash.get(id);
         Person.remove_sex(); //removed the join_year from the Personnel
-        personnel_hash.put(id, Person); //putting the Person into the id hashmap
-
-        //remove by first_name
-        String first_name = Person.get_first_name();
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(Person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(Person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        //remove by last_name
-        String last_name = Person.get_last_name();
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(Person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(Person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        //remove by department
-        String department = Person.get_department();
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(Person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(Person);
-            department_map.put(department, new_department_list);
-        }
-
-        //remove by join year
-        int join_year = Person.get_join_year();
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> join_year_list = join_year_map.get(join_year);
-            join_year_list.add(Person);
-            join_year_map.put(join_year, join_year_list);
-        }
-        else
-        {
-            List<Personnel> join_year_list = new ArrayList<>();
-            join_year_list.add(Person);
-            join_year_map.put(join_year, join_year_list);
-        }
+        personnel_hash.put(id, Person); //putting the Person into the id 
     }
 
     public void remove_email_address(String id)
@@ -1657,66 +878,6 @@ public class Personnel_Manager
         Personnel person = personnel_hash.get(id);
         person.remove_email_address(); 
         personnel_hash.put(id, person);
-
-        // Remove by first_name
-        String first_name = person.get_first_name();
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        // Remove by last_name
-        String last_name = person.get_last_name();
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        // Remove by department
-        String department = person.get_department();
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(person);
-            department_map.put(department, new_department_list);
-        }
-
-        // Remove by join year
-        int join_year = person.get_join_year();
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> join_year_list = join_year_map.get(join_year);
-            join_year_list.add(person);
-            join_year_map.put(join_year, join_year_list);
-        }
-        else
-        {
-            List<Personnel> join_year_list = new ArrayList<>();
-            join_year_list.add(person);
-            join_year_map.put(join_year, join_year_list);
-        }
     }
 
     public void remove_role(String id)
@@ -1725,66 +886,6 @@ public class Personnel_Manager
         Personnel person = personnel_hash.get(id);
         person.remove_role(); 
         personnel_hash.put(id, person); 
-
-        // Remove by first_name
-        String first_name = person.get_first_name();
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        // Remove by last_name
-        String last_name = person.get_last_name();
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        // Remove by department
-        String department = person.get_department();
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(person);
-            department_map.put(department, new_department_list);
-        }
-
-        // Remove by join year
-        int join_year = person.get_join_year();
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> join_year_list = join_year_map.get(join_year);
-            join_year_list.add(person);
-            join_year_map.put(join_year, join_year_list);
-        }
-        else
-        {
-            List<Personnel> join_year_list = new ArrayList<>();
-            join_year_list.add(person);
-            join_year_map.put(join_year, join_year_list);
-        }
     }
 
     // Remove bio
@@ -1795,134 +896,6 @@ public class Personnel_Manager
         person.remove_bio(); 
         personnel_hash.put(id, person); 
 
-        // Remove by first_name
-        String first_name = person.get_first_name();
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        // Remove by last_name
-        String last_name = person.get_last_name();
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        // Remove by department
-        String department = person.get_department();
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(person);
-            department_map.put(department, new_department_list);
-        }
-
-        // Remove by join year
-        int join_year = person.get_join_year();
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> join_year_list = join_year_map.get(join_year);
-            join_year_list.add(person);
-            join_year_map.put(join_year, join_year_list);
-        }
-        else
-        {
-            List<Personnel> join_year_list = new ArrayList<>();
-            join_year_list.add(person);
-            join_year_map.put(join_year, join_year_list);
-        }
-    }
-
-    // Remove school_web_link
-    public void remove_school_web_link(String id)
-    {
-        // Remove by id
-        Personnel person = personnel_hash.get(id);
-        person.remove_school_web_link();
-        personnel_hash.put(id, person);
-
-        // Remove by first_name
-        String first_name = person.get_first_name();
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        // Remove by last_name
-        String last_name = person.get_last_name();
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        // Remove by department
-        String department = person.get_department();
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(person);
-            department_map.put(department, new_department_list);
-        }
-
-        // Remove by join year
-        int join_year = person.get_join_year();
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> join_year_list = join_year_map.get(join_year);
-            join_year_list.add(person);
-            join_year_map.put(join_year, join_year_list);
-        }
-        else
-        {
-            List<Personnel> join_year_list = new ArrayList<>();
-            join_year_list.add(person);
-            join_year_map.put(join_year, join_year_list);
-        }
     }
 
     // Remove volunteer_activities
@@ -1932,66 +905,6 @@ public class Personnel_Manager
         Personnel person = personnel_hash.get(id);
         person.remove_volunteer_activities(); 
         personnel_hash.put(id, person); 
-
-        // Remove by first_name
-        String first_name = person.get_first_name();
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        // Remove by last_name
-        String last_name = person.get_last_name();
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        // Remove by department
-        String department = person.get_department();
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(person);
-            department_map.put(department, new_department_list);
-        }
-
-        // Remove by join year
-        int join_year = person.get_join_year();
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> join_year_list = join_year_map.get(join_year);
-            join_year_list.add(person);
-            join_year_map.put(join_year, join_year_list);
-        }
-        else
-        {
-            List<Personnel> join_year_list = new ArrayList<>();
-            join_year_list.add(person);
-            join_year_map.put(join_year, join_year_list);
-        }
     }
 
     // Remove on_leave
@@ -2001,65 +914,6 @@ public class Personnel_Manager
         Personnel person = personnel_hash.get(id);
         person.remove_on_leave(); 
         personnel_hash.put(id, person); 
-        // Remove by first_name
-        String first_name = person.get_first_name();
-        if (first_name_map.containsKey(first_name))
-        {
-            List<Personnel> first_name_list = first_name_map.get(first_name);
-            first_name_list.add(person);
-            first_name_map.put(first_name, first_name_list);
-        }
-        else
-        {
-            List<Personnel> new_first_name_list = new ArrayList<>();
-            new_first_name_list.add(person);
-            first_name_map.put(first_name, new_first_name_list);
-        }
-
-        // Remove by last_name
-        String last_name = person.get_last_name();
-        if (last_name_map.containsKey(last_name))
-        {
-            List<Personnel> last_name_list = last_name_map.get(last_name);
-            last_name_list.add(person);
-            last_name_map.put(last_name, last_name_list);
-        }
-        else
-        {
-            List<Personnel> new_last_name_list = new ArrayList<>();
-            new_last_name_list.add(person);
-            last_name_map.put(last_name, new_last_name_list);
-        }
-
-        // Remove by department
-        String department = person.get_department();
-        if (department_map.containsKey(department))
-        {
-            List<Personnel> department_list = department_map.get(department);
-            department_list.add(person);
-            department_map.put(department, department_list);
-        }
-        else
-        {
-            List<Personnel> new_department_list = new ArrayList<>();
-            new_department_list.add(person);
-            department_map.put(department, new_department_list);
-        }
-
-        // Remove by join year
-        int join_year = person.get_join_year();
-        if (join_year_map.containsKey(join_year))
-        {
-            List<Personnel> join_year_list = join_year_map.get(join_year);
-            join_year_list.add(person);
-            join_year_map.put(join_year, join_year_list);
-        }
-        else
-        {
-            List<Personnel> join_year_list = new ArrayList<>();
-            join_year_list.add(person);
-            join_year_map.put(join_year, join_year_list);
-        }
     }
 
 
@@ -2098,16 +952,19 @@ public class Personnel_Manager
             return info;
     }
 
+    // prints out entire hashmap
     public void viewMap() {
         for(HashMap.Entry<String, Personnel> entry : personnel_hash.entrySet()) {
             printPersonnel(entry.getKey());
         }
     }
 
+    // writes hashmap to summary.txt based on hierarchy
     public void aggregate() {
 
         try {
             FileWriter summaryWrite = new FileWriter("summary.txt");
+            // used to store all departments found
             ArrayList<String> department_list = new ArrayList<>();
 
             summaryWrite.write("---President---\n");
@@ -2207,11 +1064,10 @@ public class Personnel_Manager
     {
         if (first_name_map.containsKey(first_name))
         {
-            List<Personnel> person_list = first_name_map.get(first_name);
+            List<String> person_list = first_name_map.get(first_name);
             for (int counter = 0; counter < person_list.size(); counter++)
             {
-                String employee_id = person_list.get(counter).get_employee_id();
-                printPersonnel(employee_id);
+                printPersonnel(person_list.get(counter));
             }
         }
         else
@@ -2224,11 +1080,10 @@ public class Personnel_Manager
     {
         if (last_name_map.containsKey(last_name))
         {
-            List<Personnel> person_list = last_name_map.get(last_name);
+            List<String> person_list = last_name_map.get(last_name);
             for(int counter = 0; counter < person_list.size(); counter++)
             {
-                String employee_id = person_list.get(counter).get_employee_id();
-                printPersonnel(employee_id);
+                printPersonnel(person_list.get(counter));
             }
         }
         else
@@ -2241,11 +1096,10 @@ public class Personnel_Manager
     {
         if (department_map.containsKey(department))
         {
-            List<Personnel> person_list = department_map.get(department);
+            List<String> person_list = department_map.get(department);
             for(int counter = 0; counter < person_list.size(); counter++)
             {
-                String employee_id = person_list.get(counter).get_employee_id();
-                printPersonnel(employee_id);
+                printPersonnel(person_list.get(counter));
             }
         }
         else
@@ -2258,11 +1112,10 @@ public class Personnel_Manager
     {
         if (join_year_map.containsKey(join_year))
         {
-            List<Personnel> person_list = join_year_map.get(join_year);
+            List<String> person_list = join_year_map.get(join_year);
             for(int counter = 0; counter < person_list.size(); counter++)
             {
-                String employee_id = person_list.get(counter).get_employee_id();
-                printPersonnel(employee_id);
+                printPersonnel(person_list.get(counter));
             }
         }
         else

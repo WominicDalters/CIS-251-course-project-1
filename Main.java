@@ -177,8 +177,9 @@ public class Main
 
         
 
-        // UFV_manager.viewMap();
+        // alows to edit hashmap from command line
         UFV_manager.poll_updates();
+        // print out to summary.txt
         UFV_manager.aggregate();
     }
 }
