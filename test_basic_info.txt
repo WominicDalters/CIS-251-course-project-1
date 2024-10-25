@@ -1,10 +1,10 @@
-8589|John|Smith|m|johnsmith@email.com|admin|President|2000|They are good|ufv.ca/johnsmith
-7383|Marie|Smith|f|mariesmith@email.com|English|Department Head|2000|They are good|ufv.ca/mariesmith
-4533|Marla|Smith|f|marlasmith@email.com|Math|Department Head|2000|They are good|ufv.ca/marlasmith
-8677|George|Smith|m|georgesmith@email.com|Physics|Department Head|2000|They are good|ufv.ca/georgesmith
-0052|Dan|Smith|m|dansmith@email.com|History|Department Head|2000|They are good|ufv.ca/dansmith
-3376|Hailey|Bonnell|f|hailey@email.com|English|Professor|2004|They are bad|none
-3038|Hailey|Bonnell|f|hailey@email.com|Physics|Professor|2003|They are bad|none
-2280|Naomi|Chase|m|naomi@email.com|Math|Professor|2001|They are bad|ufv.ca/NaomiChase
-5149|Naomi|Ace|f|naomi@email.com|Physics|Professor|2003|They are bad|ufv.ca/NaomiAce
-8712|Liam|Halpert|f|liam@email.com|Physics|Volunteer|2020|They are good|ufv.ca/LiamHalpert
+7443|John|Smith|m|johnsmith@email.com|admin|President|2000|They are good|ufv.ca/johnsmith
+4370|Marie|Smith|f|mariesmith@email.com|English|Department Head|2000|They are good|ufv.ca/mariesmith
+9504|Marla|Smith|f|marlasmith@email.com|Math|Department Head|2000|They are good|ufv.ca/marlasmith
+9860|George|Smith|m|georgesmith@email.com|Physics|Department Head|2000|They are good|ufv.ca/georgesmith
+1388|Dan|Smith|m|dansmith@email.com|History|Department Head|2000|They are good|ufv.ca/dansmith
+5774|Abe|Halpert|f|abe@email.com|English|Professor|2016|They are good|none
+3554|Abe|Chase|m|abe@email.com|English|Professor|2018|They are good|ufv.ca/AbeChase
+0037|Jack|Jones|m|jack@email.com|Math|Professor|2017|They are bad|ufv.ca/JackJones
+5678|Hailey|Jones|m|hailey@email.com|Physics|Volunteer|2008|They are good|ufv.ca/HaileyJones
+5218|Kate|Jones|f|kate@email.com|History|Professor|2005|They are bad|none

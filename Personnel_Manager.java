@@ -733,20 +733,16 @@ public class Personnel_Manager
     public void update_status(String id, boolean new_status)
     {
         Personnel Person = personnel_hash.get(id);
-        String first_name = Person.get_first_name();
-        String last_name = Person.get_last_name();
-        String department = Person.get_department();
-        Integer join_year = Person.get_join_year();
 
         // boolean status = Person.get_faculty().get_full_time();
 
-
+        boolean status = Person.get_faculty().get_full_time();
 
         //changing the first name
         Person.get_faculty().change_full_time(new_status);
         personnel_hash.put(id, Person);
 
-        boolean status = Person.get_faculty().get_full_time();
+        
 
         //update hashmap by first_name
         if (status_map.containsKey(status)) //
@@ -759,7 +755,7 @@ public class Personnel_Manager
             //add person to the new key
             if (status_map.containsKey(new_status)) //if there is already a key for the new_name in the hashmap
             {
-                List<String> new_status_list = status_map.get(status);
+                List<String> new_status_list = status_map.get(new_status);
                 new_status_list.add(id);
                 status_map.put(new_status, new_status_list);
             }
@@ -775,7 +771,7 @@ public class Personnel_Manager
         {
             if (status_map.containsKey(new_status)) //if there is already a key for the new_name in the hashmap
             {
-                List<String> new_status_list = status_map.get(status);
+                List<String> new_status_list = status_map.get(new_status);
                 new_status_list.add(id);
                 status_map.put(new_status, new_status_list);
             }
@@ -816,7 +812,7 @@ public class Personnel_Manager
             //add person to the new key
             if (sabbatical_map.containsKey(new_sabbatical)) //if there is already a key for the new_name in the hashmap
             {
-                List<String> new_sabbatical_list = sabbatical_map.get(sabbatical);
+                List<String> new_sabbatical_list = sabbatical_map.get(new_sabbatical);
                 new_sabbatical_list.add(id);
                 sabbatical_map.put(new_sabbatical, new_sabbatical_list);
             }
@@ -832,7 +828,7 @@ public class Personnel_Manager
         {
             if (sabbatical_map.containsKey(new_sabbatical)) //if there is already a key for the new_name in the hashmap
             {
-                List<String> new_sabbatical_list = sabbatical_map.get(sabbatical);
+                List<String> new_sabbatical_list = sabbatical_map.get(new_sabbatical);
                 new_sabbatical_list.add(id);
                 sabbatical_map.put(new_sabbatical, new_sabbatical_list);
             }
@@ -873,7 +869,7 @@ public class Personnel_Manager
             //add person to the new key
             if (num_of_courses_map.containsKey(new_courses)) //if there is already a key for the new_name in the hashmap
             {
-                List<String> new_courses_list = num_of_courses_map.get(courses);
+                List<String> new_courses_list = num_of_courses_map.get(new_courses);
                 new_courses_list.add(id);
                 num_of_courses_map.put(new_courses, new_courses_list);
             }
@@ -889,7 +885,7 @@ public class Personnel_Manager
         {
             if (num_of_courses_map.containsKey(new_courses)) //if there is already a key for the new_name in the hashmap
             {
-                List<String> new_courses_list = num_of_courses_map.get(courses);
+                List<String> new_courses_list = num_of_courses_map.get(new_courses);
                 new_courses_list.add(id);
                 num_of_courses_map.put(new_courses, new_courses_list);
             }
