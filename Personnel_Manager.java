@@ -107,7 +107,7 @@ public class Personnel_Manager
         boolean scannerActive = true;
 
         while (scannerActive) {
-            System.out.print("Would you like to view, add, remove, or edit an employee?> ");
+            System.out.print("Would you like to view, add, remove, or edit an employee (n for exit)?> ");
             String res = scanner.nextLine().toLowerCase();
             if (res.equals("add")) {
                 System.out.print("Enter new employee id> ");
@@ -199,57 +199,25 @@ public class Personnel_Manager
                     System.out.print("Enter first name> ");
                     res = scanner.nextLine();
 
-                    if (first_name_map.containsKey(res)) {
-
-                        for (Personnel p : first_name_map.get(res)) {
-                            printPersonnel(p.get_employee_id());
-                        }
-                    }
-                    else {
-                        System.out.println("First name " + res + " not found");
-                    }
+                    lookup_by_first_name(res);
                 }
                 else if (res.equals("last name")) {
                     System.out.print("Enter last name> ");
                     res = scanner.nextLine();
 
-                    if (last_name_map.containsKey(res)) {
-
-                        for (Personnel p : last_name_map.get(res)) {
-                            printPersonnel(p.get_employee_id());
-                        }
-                    }
-                    else {
-                        System.out.println("Last name " + res + " not found");
-                    }
+                    lookup_by_last_name(res);
                 }
                 else if (res.equals("department")) {
                     System.out.print("Enter department name> ");
                     res = scanner.nextLine();
 
-                    if (department_map.containsKey(res)) {
-
-                        for (Personnel p : department_map.get(res)) {
-                            printPersonnel(p.get_employee_id());
-                        }
-                    }
-                    else {
-                        System.out.println("department " + res + " not found");
-                    }
+                    lookup_by_department(res);
                 }
                 else if (res.equals("join year")) {
                     System.out.print("Enter join year> ");
                     res = scanner.nextLine();
 
-                    if (join_year_map.containsKey(Integer.valueOf(res))) {
-
-                        for (Personnel p : join_year_map.get(Integer.valueOf(res))) {
-                            printPersonnel(p.get_employee_id());
-                        }
-                    }
-                    else {
-                        System.out.println("Join year " + res + " not found");
-                    }
+                    lookup_by_join_year(Integer.valueOf(res));
                 }
                 else if (res.equals("status")) {
                     // System.out.print("Enter status (1 for full-time or 0 for part-time)> ");
@@ -446,6 +414,7 @@ public class Personnel_Manager
                 break;
             }
         }
+        scanner.close();
 
     }
 

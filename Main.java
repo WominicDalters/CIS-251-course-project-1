@@ -52,6 +52,9 @@ public class Main
         boolean TESTING = true;
         if (TESTING) {
             File_Generator fg = new File_Generator();
+
+            // This takes in argument that states number of employees
+            // Max 9999
             fg.generate_all(9000);
 
             faculty = new File("test_faculty_info.txt");
@@ -67,7 +70,7 @@ public class Main
         
         
 
-        //***Testing that the file exists***
+        // All files read and added to the hashmap
 
         if (basicInfo.exists())
         {
@@ -93,7 +96,9 @@ public class Main
                         "" // leave
                         );
                     UFV_manager.add_personnel(attributes[0], newPersonnel);
+                    
                 }
+                reader.close();
             }
             catch(FileNotFoundException exception)
             {
@@ -117,7 +122,9 @@ public class Main
                     String[] attributes = data.split("\\|", -1);
                     UFV_manager.update_volunteer_activities(attributes[0], attributes[1]);
                     UFV_manager.update_on_leave(attributes[0], attributes[2]);
+                    
                 }
+                reader.close();
             }
             catch(FileNotFoundException exception)
             {
@@ -155,6 +162,7 @@ public class Main
                     );
                     UFV_manager.change_faculty(attributes[0], newFaculty);
                 }
+                reader.close();
             }
             catch(FileNotFoundException exception)
             {
