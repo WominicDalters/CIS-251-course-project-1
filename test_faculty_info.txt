@@ -1,7 +1,9 @@
-2134|full-time|n|0
-3308|full-time|n|0
-3508|full-time|n|0
-0342|full-time|n|0
-8124|full-time|n|0
-4870|full-time|n|3
-6627|full-time|n|1
+8589|full-time|n|0
+7383|full-time|n|0
+4533|full-time|n|0
+8677|full-time|n|0
+0052|full-time|n|0
+3376|part-time|n|0
+3038|part-time|n|1
+2280|full-time|y|1
+5149|part-time|n|2

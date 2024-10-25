@@ -143,7 +143,7 @@ public class Personnel_Manager
 
     public void add_faculty(String id, Faculty faculty) {
         Personnel Person = personnel_hash.get(id);
-
+        Person.change_faculty(faculty);
         boolean status = faculty.get_full_time();
         if (status_map.containsKey(status))
         {
@@ -738,13 +738,15 @@ public class Personnel_Manager
         String department = Person.get_department();
         Integer join_year = Person.get_join_year();
 
-        boolean status = Person.get_faculty().get_full_time();
+        // boolean status = Person.get_faculty().get_full_time();
 
 
 
         //changing the first name
         Person.get_faculty().change_full_time(new_status);
         personnel_hash.put(id, Person);
+
+        boolean status = Person.get_faculty().get_full_time();
 
         //update hashmap by first_name
         if (status_map.containsKey(status)) //
