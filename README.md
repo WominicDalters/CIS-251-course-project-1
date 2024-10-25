@@ -1,5 +1,5 @@
 # CIS 251 course project 1
- Designing and implementing a simple UFV personnel (including faculty and staff) management system.
+ Designing and implementing a simple UFV personnel (including faculty and staff) management system. https://github.com/WominicDalters/CIS-251-course-project-1.
 
 ## How it works
 When you run the program, it is in testing mode by default. This means it will run a file generator to create 3 file: 

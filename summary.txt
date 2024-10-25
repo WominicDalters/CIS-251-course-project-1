@@ -1,42 +1,42 @@
 ---President---
-ID: 7325 -> First: John Last: Smith Sex: m Email: johnsmith@email.com Department: admin Role: President JoinYear: 2000 Bio: They are good WebLink: ufv.ca/johnsmith Volunteer: Volunteerd 60 days Leave: no FullTime: true Sabbatical: false NumOfCourses: 0
+ID: 7698 -> First: John Last: Smith Sex: m Email: johnsmith@email.com Department: admin Role: President JoinYear: 2000 Bio: They are good WebLink: ufv.ca/johnsmith Volunteer: Volunteerd 60 days Leave: no FullTime: true Sabbatical: false NumOfCourses: 0
 
 ---Department Head of History---
-ID: 6585 -> First: Dan Last: Smith Sex: m Email: dansmith@email.com Department: History Role: Department Head JoinYear: 2000 Bio: They are good WebLink: ufv.ca/dansmith Volunteer: Volunteerd 60 days Leave: no FullTime: true Sabbatical: false NumOfCourses: 0
+ID: 5034 -> First: Dan Last: Smith Sex: m Email: dansmith@email.com Department: History Role: Department Head JoinYear: 2000 Bio: They are good WebLink: ufv.ca/dansmith Volunteer: Volunteerd 60 days Leave: no FullTime: true Sabbatical: false NumOfCourses: 0
 
 ---History Professors---
-ID: 9534 -> First: Naomi Last: Chase Sex: m Email: naomi@email.com Department: History Role: Professor JoinYear: 2010 Bio: They are bad WebLink: none Volunteer: Volunteered 60 days Leave: parental FullTime: false Sabbatical: false NumOfCourses: 0
-ID: 7920 -> First: Bob Last: Scott Sex: f Email: bob@email.com Department: History Role: Professor JoinYear: 2019 Bio: They are good WebLink: ufv.ca/BobScott Volunteer: Volunteered 60 days Leave: vacation FullTime: true Sabbatical: false NumOfCourses: 3
 
 ---History Volunteers---
-ID: 6164 -> First: Chris Last: Ace Sex: m Email: chris@email.com Department: History Role: Volunteer JoinYear: 2003 Bio: They are bad WebLink: ufv.ca/ChrisAce Volunteer: Volunteered 60 days Leave: parental
+ID: 0253 -> First: Gwen Last: Jones Sex: f Email: gwen@email.com Department: History Role: Volunteer JoinYear: 2024 Bio: They are bad WebLink: ufv.ca/GwenJones Volunteer: Volunteered 60 days Leave: maternity
 
 ---Others from History---
 
 ---Department Head of English---
-ID: 1688 -> First: Marie Last: Smith Sex: f Email: mariesmith@email.com Department: English Role: Department Head JoinYear: 2000 Bio: They are good WebLink: ufv.ca/mariesmith Volunteer: Volunteerd 60 days Leave: no FullTime: true Sabbatical: false NumOfCourses: 0
+ID: 8629 -> First: Marie Last: Smith Sex: f Email: mariesmith@email.com Department: English Role: Department Head JoinYear: 2000 Bio: They are good WebLink: ufv.ca/mariesmith Volunteer: Volunteerd 60 days Leave: no FullTime: true Sabbatical: false NumOfCourses: 0
 
 ---English Professors---
+ID: 1453 -> First: Daisy Last: Halpert Sex: m Email: daisy@email.com Department: English Role: Professor JoinYear: 2013 Bio: They are bad WebLink: none Volunteer: Volunteered 60 days Leave: parental FullTime: false Sabbatical: false NumOfCourses: 1
+ID: 5489 -> First: Pat Last: Halpert Sex: m Email: pat@email.com Department: English Role: Professor JoinYear: 2019 Bio: They are good WebLink: none Volunteer: Volunteered 0 days Leave: parental FullTime: true Sabbatical: false NumOfCourses: 5
+ID: 5029 -> First: Olivia Last: Smith Sex: m Email: olivia@email.com Department: English Role: Professor JoinYear: 2019 Bio: They are good WebLink: ufv.ca/OliviaSmith Volunteer: Volunteered 0 days Leave: sick FullTime: true Sabbatical: false NumOfCourses: 2
 
 ---English Volunteers---
+ID: 8095 -> First: Naomi Last: Chase Sex: m Email: naomi@email.com Department: English Role: Volunteer JoinYear: 2001 Bio: They are bad WebLink: none Volunteer: Volunteered 60 days Leave: maternity
 
 ---Others from English---
 
 ---Department Head of Physics---
-ID: 5914 -> First: George Last: Smith Sex: m Email: georgesmith@email.com Department: Physics Role: Department Head JoinYear: 2000 Bio: They are good WebLink: ufv.ca/georgesmith Volunteer: Volunteerd 60 days Leave: no FullTime: true Sabbatical: false NumOfCourses: 0
+ID: 9281 -> First: George Last: Smith Sex: m Email: georgesmith@email.com Department: Physics Role: Department Head JoinYear: 2000 Bio: They are good WebLink: ufv.ca/georgesmith Volunteer: Volunteerd 60 days Leave: no FullTime: true Sabbatical: false NumOfCourses: 0
 
 ---Physics Professors---
 
 ---Physics Volunteers---
-ID: 9911 -> First: Ian Last: Halpert Sex: m Email: ian@email.com Department: Physics Role: Volunteer JoinYear: 2000 Bio: They are good WebLink: none Volunteer: Volunteered 0 days Leave: parental
 
 ---Others from Physics---
 
 ---Department Head of Math---
-ID: 4106 -> First: Marla Last: Smith Sex: f Email: marlasmith@email.com Department: Math Role: Department Head JoinYear: 2000 Bio: They are good WebLink: ufv.ca/marlasmith Volunteer: Volunteerd 60 days Leave: no FullTime: true Sabbatical: false NumOfCourses: 0
+ID: 0516 -> First: Marla Last: Smith Sex: f Email: marlasmith@email.com Department: Math Role: Department Head JoinYear: 2000 Bio: They are good WebLink: ufv.ca/marlasmith Volunteer: Volunteerd 60 days Leave: no FullTime: true Sabbatical: false NumOfCourses: 0
 
 ---Math Professors---
-ID: 2480 -> First: Pat Last: Halpert Sex: f Email: pat@email.com Department: Math Role: Professor JoinYear: 2016 Bio: They are good WebLink: none Volunteer: Volunteered 60 days Leave: sabbatical FullTime: false Sabbatical: true NumOfCourses: 5
 
 ---Math Volunteers---
 

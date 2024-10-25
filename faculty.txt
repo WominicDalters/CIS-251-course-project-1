@@ -1,8 +1,8 @@
-7325|full-time|n|0
-1688|full-time|n|0
-4106|full-time|n|0
-5914|full-time|n|0
-6585|full-time|n|0
-2480|part-time|y|5
-7920|full-time|n|3
-9534|part-time|n|0
+7698|full-time|n|0
+8629|full-time|n|0
+0516|full-time|n|0
+9281|full-time|n|0
+5034|full-time|n|0
+5489|full-time|n|5
+1453|part-time|n|1
+5029|full-time|n|2
