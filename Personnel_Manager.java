@@ -11,6 +11,7 @@ public class Personnel_Manager
     //Hashmap by id
     private HashMap<String /*employee_id*/, Personnel> personnel_hash = new HashMap<>();
 
+    // Lists in these maps contain employee ids
     //hashmap by first_name
     private HashMap<String, List<String>> first_name_map = new HashMap<>();
 
@@ -140,6 +141,51 @@ public class Personnel_Manager
         }
     }
 
+    public void add_faculty(String id, Faculty faculty) {
+        Personnel Person = personnel_hash.get(id);
+        Person.change_faculty(faculty);
+        boolean status = faculty.get_full_time();
+        if (status_map.containsKey(status))
+        {
+            List<String> status_list = status_map.get(status);
+            status_list.add(id);
+            status_map.put(status, status_list);
+        }
+        else
+        {
+            List<String> new_status_list = new ArrayList<>();
+            new_status_list.add(id);
+            status_map.put(status, new_status_list);
+        }
+
+        boolean sabbatical = faculty.get_sabbatical();
+        if (sabbatical_map.containsKey(sabbatical)) {
+            List<String> sabbatical_list = sabbatical_map.get(sabbatical);
+            sabbatical_list.add(id);
+            sabbatical_map.put(sabbatical, sabbatical_list);
+        }
+        else
+        {
+            List<String> new_sabbatical_list = new ArrayList<>();
+            new_sabbatical_list.add(id);
+            sabbatical_map.put(sabbatical, new_sabbatical_list);
+        }
+
+        Integer noCourses = faculty.get_courses_teaching();
+        if (num_of_courses_map.containsKey(noCourses)) {
+            List<String> courses_list = num_of_courses_map.get(noCourses);
+            courses_list.add(id);
+            num_of_courses_map.put(noCourses, courses_list);
+        }
+        else
+        {
+            List<String> new_courses_list = new ArrayList<>();
+            new_courses_list.add(id);
+            num_of_courses_map.put(noCourses, new_courses_list);
+        }
+
+    }
+
     public void poll_updates() {
 
         Scanner scanner = new Scanner(System.in);
@@ -148,6 +194,7 @@ public class Personnel_Manager
         while (scannerActive) {
             System.out.print("Would you like to view, add, remove, or edit an employee (n for exit)?> ");
             String res = scanner.nextLine().toLowerCase();
+            // Add Person
             if (res.equals("add")) {
                 System.out.print("Enter new employee id> ");
                 res = scanner.nextLine();
@@ -213,12 +260,14 @@ public class Personnel_Manager
 
                 Personnel newPerson = new Personnel(nEmpId, nFirstName, nLastName, nSex, nEmail, nDepartment, nRole, nJoinYear, nBio, nWebLink, nVolunteer, nLeaveStatus);
 
-                newPerson.change_faculty(new Faculty(nEmpId, nStatus, nSabbatical, nCourses));
+                // newPerson.change_faculty(new Faculty(nEmpId, nStatus, nSabbatical, nCourses));
 
 
                 personnel_hash.put(nEmpId, newPerson);
+                add_faculty(nEmpId, new Faculty(nEmpId, nStatus, nSabbatical, nCourses));
                 printPersonnel(nEmpId);
             }
+            // View Person
             else if (res.equals("view")) {
                 System.out.print("Would you like to search employee by employee id, first name, last name, department, join year, status, sabbatical, or # of courses?> ");
                 // System.out.print("Would you like to search employee by employee id, first name, last name, department, or join year> ");
@@ -262,8 +311,8 @@ public class Personnel_Manager
                     System.out.print("Enter 1 for full-time, 0 for part-time> ");
                     res = scanner.nextLine();
                     Integer iRes = Integer.valueOf(res);
-
-                    lookup_by_status((iRes == 1));
+                    boolean s = iRes.equals(1);
+                    lookup_by_status(s);
                 }
                 else if (res.equals("sabbatical")) {
                     System.out.print("Enter 1 for sabbatical, 0 for no sabbatical> ");
@@ -282,17 +331,19 @@ public class Personnel_Manager
 
 
             }
+            // Remove Person
             else if (res.equals("remove")) {
                 System.out.print("Enter employee id to be remove> ");
                 res = scanner.nextLine();
                 if (personnel_hash.containsKey(res)) {
-                    personnel_hash.remove(res);
+                    remove_person(res);
                     System.out.println("Employee " + res + " removed");
                 }
                 else {
                     System.out.println("Employee " + res + " does not exist");
                 }
             }
+            // Edit Person
             else if (res.equals("edit")) {
                 System.out.print("Enter employee id to be edited> ");
                 res = scanner.nextLine();
@@ -450,6 +501,7 @@ public class Personnel_Manager
                 }
 
             }
+            // Exit Program
             else if (res.equals("n")) {
                 break;
             }
@@ -686,18 +738,16 @@ public class Personnel_Manager
     public void update_status(String id, boolean new_status)
     {
         Personnel Person = personnel_hash.get(id);
-        String first_name = Person.get_first_name();
-        String last_name = Person.get_last_name();
-        String department = Person.get_department();
-        Integer join_year = Person.get_join_year();
+
+        // boolean status = Person.get_faculty().get_full_time();
 
         boolean status = Person.get_faculty().get_full_time();
-
-
 
         //changing the first name
         Person.get_faculty().change_full_time(new_status);
         personnel_hash.put(id, Person);
+
+        
 
         //update hashmap by first_name
         if (status_map.containsKey(status)) //
@@ -710,7 +760,7 @@ public class Personnel_Manager
             //add person to the new key
             if (status_map.containsKey(new_status)) //if there is already a key for the new_name in the hashmap
             {
-                List<String> new_status_list = status_map.get(status);
+                List<String> new_status_list = status_map.get(new_status);
                 new_status_list.add(id);
                 status_map.put(new_status, new_status_list);
             }
@@ -726,7 +776,7 @@ public class Personnel_Manager
         {
             if (status_map.containsKey(new_status)) //if there is already a key for the new_name in the hashmap
             {
-                List<String> new_status_list = status_map.get(status);
+                List<String> new_status_list = status_map.get(new_status);
                 new_status_list.add(id);
                 status_map.put(new_status, new_status_list);
             }
@@ -767,7 +817,7 @@ public class Personnel_Manager
             //add person to the new key
             if (sabbatical_map.containsKey(new_sabbatical)) //if there is already a key for the new_name in the hashmap
             {
-                List<String> new_sabbatical_list = sabbatical_map.get(sabbatical);
+                List<String> new_sabbatical_list = sabbatical_map.get(new_sabbatical);
                 new_sabbatical_list.add(id);
                 sabbatical_map.put(new_sabbatical, new_sabbatical_list);
             }
@@ -783,7 +833,7 @@ public class Personnel_Manager
         {
             if (sabbatical_map.containsKey(new_sabbatical)) //if there is already a key for the new_name in the hashmap
             {
-                List<String> new_sabbatical_list = sabbatical_map.get(sabbatical);
+                List<String> new_sabbatical_list = sabbatical_map.get(new_sabbatical);
                 new_sabbatical_list.add(id);
                 sabbatical_map.put(new_sabbatical, new_sabbatical_list);
             }
@@ -824,7 +874,7 @@ public class Personnel_Manager
             //add person to the new key
             if (num_of_courses_map.containsKey(new_courses)) //if there is already a key for the new_name in the hashmap
             {
-                List<String> new_courses_list = num_of_courses_map.get(courses);
+                List<String> new_courses_list = num_of_courses_map.get(new_courses);
                 new_courses_list.add(id);
                 num_of_courses_map.put(new_courses, new_courses_list);
             }
@@ -840,7 +890,7 @@ public class Personnel_Manager
         {
             if (num_of_courses_map.containsKey(new_courses)) //if there is already a key for the new_name in the hashmap
             {
-                List<String> new_courses_list = num_of_courses_map.get(courses);
+                List<String> new_courses_list = num_of_courses_map.get(new_courses);
                 new_courses_list.add(id);
                 num_of_courses_map.put(new_courses, new_courses_list);
             }
@@ -933,7 +983,20 @@ public class Personnel_Manager
 
 
 
+    public void remove_person(String id) {
+        Personnel Person = personnel_hash.get(id);
+        remove_first_name(id);
+        remove_last_name(id);
+        remove_department(id);
+        remove_join_year(id);
 
+        if (Person.get_faculty() != null) {
+            remove_status(id);
+            remove_sabbatical(id);
+            remove_courses(id);
+        }
+        personnel_hash.remove(id);
+    }
 
     //removing attributes
     //method for removing personnel
@@ -1006,6 +1069,39 @@ public class Personnel_Manager
             List<String> join_year_list = join_year_map.get(old_join_year);
             join_year_list.remove(id);
             join_year_map.put(old_join_year, join_year_list);
+        }
+    }
+
+    public void remove_status(String id) {
+        Personnel Person = personnel_hash.get(id);
+        boolean old_status = Person.get_faculty().get_full_time();
+
+        if (status_map.containsKey(old_status)) {
+            List<String> status_list = status_map.get(old_status);
+            status_list.remove(id);
+            status_map.put(old_status, status_list);
+        }
+    }
+
+    public void remove_sabbatical(String id) {
+        Personnel Person = personnel_hash.get(id);
+        boolean old_sabbatical = Person.get_faculty().get_sabbatical();
+
+        if (sabbatical_map.containsKey(old_sabbatical)) {
+            List<String> sabbatical_list = sabbatical_map.get(old_sabbatical);
+            sabbatical_list.remove(id);
+            sabbatical_map.put(old_sabbatical, sabbatical_list);
+        }
+    }
+
+    public void remove_courses(String id) {
+        Personnel Person = personnel_hash.get(id);
+        Integer old_courses = Person.get_faculty().get_courses_teaching();
+
+        if (num_of_courses_map.containsKey(old_courses)) {
+            List<String> courses_list = num_of_courses_map.get(old_courses);
+            courses_list.remove(id);
+            num_of_courses_map.put(old_courses, courses_list);
         }
     }
 
