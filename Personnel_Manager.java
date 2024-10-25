@@ -194,6 +194,7 @@ public class Personnel_Manager
         while (scannerActive) {
             System.out.print("Would you like to view, add, remove, or edit an employee (n for exit)?> ");
             String res = scanner.nextLine().toLowerCase();
+            // Add Person
             if (res.equals("add")) {
                 System.out.print("Enter new employee id> ");
                 res = scanner.nextLine();
@@ -266,6 +267,7 @@ public class Personnel_Manager
                 add_faculty(nEmpId, new Faculty(nEmpId, nStatus, nSabbatical, nCourses));
                 printPersonnel(nEmpId);
             }
+            // View Person
             else if (res.equals("view")) {
                 System.out.print("Would you like to search employee by employee id, first name, last name, department, join year, status, sabbatical, or # of courses?> ");
                 // System.out.print("Would you like to search employee by employee id, first name, last name, department, or join year> ");
@@ -329,17 +331,19 @@ public class Personnel_Manager
 
 
             }
+            // Remove Person
             else if (res.equals("remove")) {
                 System.out.print("Enter employee id to be remove> ");
                 res = scanner.nextLine();
                 if (personnel_hash.containsKey(res)) {
-                    personnel_hash.remove(res);
+                    remove_person(res);
                     System.out.println("Employee " + res + " removed");
                 }
                 else {
                     System.out.println("Employee " + res + " does not exist");
                 }
             }
+            // Edit Person
             else if (res.equals("edit")) {
                 System.out.print("Enter employee id to be edited> ");
                 res = scanner.nextLine();
@@ -497,6 +501,7 @@ public class Personnel_Manager
                 }
 
             }
+            // Exit Program
             else if (res.equals("n")) {
                 break;
             }
@@ -978,7 +983,20 @@ public class Personnel_Manager
 
 
 
+    public void remove_person(String id) {
+        Personnel Person = personnel_hash.get(id);
+        remove_first_name(id);
+        remove_last_name(id);
+        remove_department(id);
+        remove_join_year(id);
 
+        if (Person.get_faculty() != null) {
+            remove_status(id);
+            remove_sabbatical(id);
+            remove_courses(id);
+        }
+        personnel_hash.remove(id);
+    }
 
     //removing attributes
     //method for removing personnel
@@ -1051,6 +1069,39 @@ public class Personnel_Manager
             List<String> join_year_list = join_year_map.get(old_join_year);
             join_year_list.remove(id);
             join_year_map.put(old_join_year, join_year_list);
+        }
+    }
+
+    public void remove_status(String id) {
+        Personnel Person = personnel_hash.get(id);
+        boolean old_status = Person.get_faculty().get_full_time();
+
+        if (status_map.containsKey(old_status)) {
+            List<String> status_list = status_map.get(old_status);
+            status_list.remove(id);
+            status_map.put(old_status, status_list);
+        }
+    }
+
+    public void remove_sabbatical(String id) {
+        Personnel Person = personnel_hash.get(id);
+        boolean old_sabbatical = Person.get_faculty().get_sabbatical();
+
+        if (sabbatical_map.containsKey(old_sabbatical)) {
+            List<String> sabbatical_list = sabbatical_map.get(old_sabbatical);
+            sabbatical_list.remove(id);
+            sabbatical_map.put(old_sabbatical, sabbatical_list);
+        }
+    }
+
+    public void remove_courses(String id) {
+        Personnel Person = personnel_hash.get(id);
+        Integer old_courses = Person.get_faculty().get_courses_teaching();
+
+        if (num_of_courses_map.containsKey(old_courses)) {
+            List<String> courses_list = num_of_courses_map.get(old_courses);
+            courses_list.remove(id);
+            num_of_courses_map.put(old_courses, courses_list);
         }
     }
 
